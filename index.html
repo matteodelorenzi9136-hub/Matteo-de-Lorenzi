@@ -4,74 +4,197 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#111827">
-<meta name="description" content="Matteo De Lorenzi — Incoming Quality Engineering and Cleanliness Specialist">
+<meta name="description" content="Matteo De Lorenzi — Digital Professional & Personal Card">
 <title>Matteo De Lorenzi | Digital Card</title>
+
 <style>
-:root{--bg:#e8ebf0;--dark:#111827;--teal:#0f766e;--mint:#5eead4;--white:#fff;--muted:#64748b}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(135deg,#dfe5ea,#f7f8fa);color:var(--dark)}
-.wrap{max-width:520px;margin:auto;padding:22px 16px 40px}.card{background:var(--dark);color:#fff;border-radius:28px;overflow:hidden;box-shadow:0 24px 70px #0003}
-.top{padding:34px 28px 28px;background:linear-gradient(145deg,#111827,#0b3f3d)}
-.badge{display:inline-block;color:var(--mint);border:1px solid #5eead455;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
-.initials{width:66px;height:66px;border-radius:18px;background:var(--teal);display:grid;place-items:center;font-size:23px;font-weight:800;margin:22px 0 18px}
-h1{font-size:36px;line-height:.95;margin:0;letter-spacing:-.04em}h1 span{color:var(--mint)}
-.role{margin:16px 0 0;color:#ffffffb5;line-height:1.5;font-size:14px}
-.body{background:#fff;color:var(--dark);padding:24px 20px}
-.profile{font-size:14px;line-height:1.65;color:#334155;margin:0 0 20px}
-.actions{display:grid;gap:10px}
-a.btn{display:flex;align-items:center;justify-content:center;text-decoration:none;border-radius:14px;padding:14px 16px;font-weight:750;font-size:14px}
-.primary{background:var(--teal);color:#fff}.secondary{background:#f1f5f9;color:#0f172a;border:1px solid #e2e8f0}
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.small{font-size:12px;color:var(--muted);text-align:center;margin-top:18px;line-height:1.5}
-.section{margin-top:22px;padding-top:20px;border-top:1px solid #e5e7eb}
-.section h2{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:#64748b;margin:0 0 12px}
-.tags{display:flex;flex-wrap:wrap;gap:7px}.tag{background:#ecfdf5;color:#0f766e;border:1px solid #ccfbf1;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:700}
-.footer{text-align:center;color:#64748b;font-size:11px;margin-top:16px}
+:root{
+--dark:#111827;
+--teal:#0f766e;
+--mint:#5eead4;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:linear-gradient(135deg,#dfe5ea,#f7f8fa);
+color:var(--dark);
+}
+
+.wrap{
+max-width:520px;
+margin:auto;
+padding:22px 16px 40px;
+}
+
+.card{
+background:var(--dark);
+color:white;
+border-radius:28px;
+overflow:hidden;
+box-shadow:0 24px 70px rgba(0,0,0,.20);
+}
+
+.top{
+padding:34px 28px 30px;
+background:linear-gradient(145deg,#111827,#0b3f3d);
+text-align:center;
+}
+
+.badge{
+display:inline-block;
+color:var(--mint);
+border:1px solid rgba(94,234,212,.35);
+border-radius:999px;
+padding:7px 12px;
+font-size:11px;
+font-weight:bold;
+letter-spacing:.12em;
+text-transform:uppercase;
+}
+
+.avatar{
+display:block;
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+margin:22px auto 18px;
+border:3px solid var(--mint);
+box-shadow:0 10px 30px rgba(0,0,0,.30);
+}
+
+h1{
+font-size:38px;
+line-height:.95;
+margin:0;
+letter-spacing:-.04em;
+}
+
+h1 span{
+color:var(--mint);
+}
+
+.subtitle{
+color:rgba(255,255,255,.70);
+font-size:14px;
+line-height:1.5;
+margin:14px 0 25px;
+}
+
+.choice{
+display:grid;
+gap:12px;
+}
+
+.choice a{
+display:block;
+text-decoration:none;
+color:white;
+border-radius:18px;
+padding:20px;
+text-align:left;
+transition:.2s;
+}
+
+.choice a:active{
+transform:scale(.98);
+}
+
+.professional{
+background:linear-gradient(135deg,#0f766e,#115e59);
+}
+
+.personal{
+background:linear-gradient(135deg,#475569,#334155);
+}
+
+.choice strong{
+display:block;
+font-size:17px;
+margin-bottom:6px;
+}
+
+.choice span{
+font-size:12px;
+color:rgba(255,255,255,.70);
+}
+
+.footer{
+text-align:center;
+color:#64748b;
+font-size:11px;
+margin-top:16px;
+}
 </style>
 </head>
+
 <body>
-<div class="wrap"><div class="card">
-  <div class="top">
-    <div class="badge">Digital Business Card</div>
-    <div class="initials">MDL</div>
-    <h1>Matteo<br><span>De Lorenzi</span></h1>
-    <div class="role">Incoming Quality Engineering and Cleanliness Specialist<br>Controllo Qualità · Metrologia · Automotive</div>
-  </div>
-  <div class="body">
-    <p class="profile">Perito Meccanico con oltre 10 anni di esperienza nel settore meccanico e automotive. Esperienza in incoming quality, gestione fornitori, CSL2, PPAP, 8D, KPI fornitori e requisiti di cleanliness secondo ISO 16232 / VDA 19.</p>
 
-    <div class="actions">
-      <a class="btn primary" href="cv.html">📄 Visualizza CV</a>
-      <a class="btn secondary" href="https://it.linkedin.com/in/matteo-de-lorenzi-3a413b232" target="_blank" rel="noopener">in LinkedIn</a>
-      <a class="btn secondary" href="https://www.instagram.com/deloMatto/" target="_blank" rel="noopener">📸 Instagram @deloMatto</a>
-      <a class="btn secondary" href="https://www.facebook.com/share/1GxP8ijSho/" target="_blank" rel="noopener">f Facebook @deloMatto</a>
-      <a class="btn secondary" href="https://wa.me/393335362069" target="_blank" rel="noopener">💬 WhatsApp</a>
-      <a class="btn secondary" href="mailto:matteode.lorenzi9136@gmail.com">✉️ Email</a>
-      <div class="contact">
-        <a class="btn secondary" href="tel:+393335362069">📞 Chiama</a>
-        <a class="btn secondary" href="vcard.vcf">👤 Salva contatto</a>
-      </div>
-    </div>
+<div class="wrap">
 
-    <div class="section">
-      <h2>Competenze</h2>
-      <div class="tags">
-        <span class="tag">Incoming Quality</span><span class="tag">Metrologia</span><span class="tag">PPAP</span>
-        <span class="tag">CSL2</span><span class="tag">8D</span><span class="tag">MSA</span>
-        <span class="tag">ISO 16232</span><span class="tag">VDA 19</span><span class="tag">Lean Six Sigma Black Belt</span>
-      </div>
-    </div>
+<div class="card">
 
-    <div class="section">
-      <h2>Contatti</h2>
-      <div style="font-size:13px;line-height:1.8;color:#475569">
-        📍 Calcinato (BS)<br>
-        📱 333 536 2069<br>
-        ✉️ matteode.lorenzi9136@gmail.com
-      </div>
-    </div>
-  </div>
+<div class="top">
+
+<div class="badge">
+Digital Card
 </div>
-<div class="footer">Pagina pensata per essere aperta tramite NFC.</div>
+
+<img
+class="avatar"
+src="profile.jpg"
+alt="Matteo De Lorenzi"
+>
+
+<h1>
+Matteo<br>
+<span>De Lorenzi</span>
+</h1>
+
+<div class="subtitle">
+Digital Professional & Personal Card
 </div>
+
+<div class="choice">
+
+<a class="professional" href="professional.html">
+
+<strong>
+💼 Area Professionale
+</strong>
+
+<span>
+Quality · Metrology · Automotive · Lean Six Sigma
+</span>
+
+</a>
+
+<a class="personal" href="personal.html">
+
+<strong>
+👤 Area Personale
+</strong>
+
+<span>
+Social · Contatti · Interessi
+</span>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+Pagina pensata per essere aperta tramite NFC.
+</div>
+
+</div>
+
 </body>
 </html>
