@@ -1509,6 +1509,1050 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+  <!-- =========================================================
+     🎮 GAMING DASHBOARD
+     Tutta la dashboard viene generata tramite JavaScript
+========================================================= -->
+
+<style>
+
+#gamingOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99996;
+  display: none;
+  background:
+    radial-gradient(circle at top right, rgba(0,120,255,.18), transparent 35%),
+    #080b10;
+  overflow-y: auto;
+  color: white;
+}
+
+#gamingOverlay.open {
+  display: block;
+}
+
+.gaming-dashboard {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* HEADER */
+
+.gaming-header {
+  background: linear-gradient(135deg,#111923,#0b1119);
+  border: 1px solid #263544;
+  border-radius: 25px;
+  padding: 25px;
+  margin-bottom: 18px;
+  box-shadow: 0 15px 50px rgba(0,0,0,.35);
+}
+
+.gaming-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.gaming-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.gaming-subtitle {
+  color: #8ea0b3;
+  margin-top: 5px;
+}
+
+.gaming-close {
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #111;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* KPI */
+
+.gaming-kpis {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.gaming-kpi {
+  background: #171e27;
+  border: 1px solid #283543;
+  border-radius: 18px;
+  padding: 18px;
+  text-align: center;
+}
+
+.gaming-kpi-number {
+  font-size: 28px;
+  font-weight: bold;
+  color: #55bce9;
+}
+
+.gaming-kpi-label {
+  color: #8796a6;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+/* CLASSIFICA */
+
+.gaming-section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 22px 0 12px;
+}
+
+.gaming-list {
+  display: grid;
+  gap: 12px;
+}
+
+.game-card {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  background: #11171f;
+  border: 1px solid #263442;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.game-card:hover {
+  transform: translateY(-2px);
+  border-color: #168bd0;
+  background: #151e28;
+}
+
+.game-cover-small {
+  width: 90px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #202832;
+}
+
+.game-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.game-rank {
+  color: #758697;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.game-bar {
+  height: 7px;
+  background: #252d36;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.game-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg,#168bd0,#55bce9);
+}
+
+.game-score {
+  font-size: 28px;
+  font-weight: bold;
+  color: #55bce9;
+  min-width: 65px;
+  text-align: right;
+}
+
+/* GAME DETAIL */
+
+#gameDetailOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99997;
+  display: none;
+  background: rgba(0,0,0,.88);
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+#gameDetailOverlay.open {
+  display: flex;
+}
+
+.game-detail {
+  width: 100%;
+  max-width: 850px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: #10161e;
+  border: 1px solid #293847;
+  border-radius: 25px;
+  padding: 22px;
+  box-shadow: 0 20px 70px rgba(0,0,0,.6);
+}
+
+.game-detail-header {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 22px;
+  align-items: center;
+}
+
+.game-detail-cover {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.game-detail-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.game-detail-score {
+  font-size: 52px;
+  font-weight: bold;
+  color: #55bce9;
+  margin-top: 10px;
+}
+
+.game-detail-score span {
+  font-size: 18px;
+  color: #718391;
+}
+
+/* DATASET */
+
+.dataset {
+  margin-top: 25px;
+  background: #151c24;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #293744;
+}
+
+.dataset-title {
+  padding: 15px;
+  font-weight: bold;
+  color: #55bce9;
+  border-bottom: 1px solid #293744;
+}
+
+.dataset-row {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  padding: 12px 15px;
+  border-bottom: 1px solid #242e38;
+}
+
+.dataset-row:last-child {
+  border-bottom: 0;
+}
+
+.dataset-score {
+  text-align: right;
+  font-weight: bold;
+}
+
+/* COMPLETAMENTO */
+
+.completion {
+  margin-top: 20px;
+  background: #151c24;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.completion-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.completion-bar {
+  height: 9px;
+  background: #29313a;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.completion-fill {
+  height: 100%;
+  background: #55bce9;
+}
+
+/* COMMENTO */
+
+.game-comment {
+  margin-top: 20px;
+  background: #18212b;
+  border-left: 4px solid #168bd0;
+  border-radius: 12px;
+  padding: 18px;
+  line-height: 1.6;
+  color: #c8d2dc;
+}
+
+/* BUTTON */
+
+.game-back {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  border: 0;
+  border-radius: 15px;
+  background: #168bd0;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+  .gaming-dashboard {
+    padding: 12px;
+  }
+
+  .gaming-kpis {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .game-card {
+    grid-template-columns: 65px 1fr auto;
+    gap: 10px;
+  }
+
+  .game-cover-small {
+    width: 65px;
+    height: 88px;
+  }
+
+  .game-name {
+    font-size: 15px;
+  }
+
+  .game-score {
+    font-size: 22px;
+    min-width: 48px;
+  }
+
+  .game-detail-header {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .game-detail-cover {
+    width: 100px;
+    height: 135px;
+  }
+
+  .game-detail-title {
+    font-size: 21px;
+  }
+
+  .game-detail-score {
+    font-size: 38px;
+  }
+
+}
+
+</style>
+
+
+<!-- DASHBOARD -->
+
+<div id="gamingOverlay">
+
+  <div class="gaming-dashboard">
+
+    <div class="gaming-header">
+
+      <div class="gaming-top">
+
+        <div>
+
+          <div class="gaming-title">
+            🎮 Gaming Dashboard
+          </div>
+
+          <div class="gaming-subtitle">
+            Matteo De Lorenzi · Game Data Sheet
+          </div>
+
+        </div>
+
+        <button
+          class="gaming-close"
+          id="gamingClose"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="gaming-kpis">
+
+        <div class="gaming-kpi">
+          <div
+            class="gaming-kpi-number"
+            id="gameCount"
+          >
+          </div>
+
+          <div class="gaming-kpi-label">
+            Giochi valutati
+          </div>
+        </div>
+
+
+        <div class="gaming-kpi">
+          <div
+            class="gaming-kpi-number"
+            id="gameAverage"
+          >
+          </div>
+
+          <div class="gaming-kpi-label">
+            Media generale
+          </div>
+        </div>
+
+
+        <div class="gaming-kpi">
+          <div
+            class="gaming-kpi-number"
+            id="gameBest"
+          >
+          </div>
+
+          <div class="gaming-kpi-label">
+            Miglior gioco
+          </div>
+        </div>
+
+
+        <div class="gaming-kpi">
+          <div
+            class="gaming-kpi-number"
+            id="gamePlatinum"
+          >
+          </div>
+
+          <div class="gaming-kpi-label">
+            Platinati
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="gaming-section-title">
+      🏆 La mia classifica
+    </div>
+
+    <div
+      class="gaming-list"
+      id="gamingList"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- DETTAGLIO GIOCO -->
+
+<div id="gameDetailOverlay">
+
+  <div class="game-detail">
+
+    <div id="gameDetailContent"></div>
+
+    <button
+      class="game-back"
+      id="gameDetailClose"
+    >
+      ← Torna alla classifica
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* =====================================================
+     DATASET DEI TUOI GIOCHI
+  ===================================================== */
+
+  const giochi = [
+
+    {
+      nome: "Red Dead Redemption 2",
+      voti: [10,10,10,10,10,10,10],
+      completamento: 51,
+      platino: true,
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900_2x.jpg",
+      commento:
+        "Un'esperienza enorme e immersiva. Atmosfera, narrativa, personaggi ed esplorazione sono per me il riferimento assoluto."
+    },
+
+    {
+      nome: "The Legend of Zelda: Breath of the Wild",
+      voti: [9,10,10,9,9,10,10],
+      completamento: 100,
+      platino: false,
+      cover:
+        "https://upload.wikimedia.org/wikipedia/en/0/0e/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
+      commento:
+        "Libertà, esplorazione e senso di scoperta. Un gioco che riesce a trasformare il mondo stesso nel vero protagonista."
+    },
+
+    {
+      nome: "The Last of Us Part II",
+      voti: [9,10,10,10,9,9,9],
+      completamento: 38,
+      platino: false,
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/2531310/library_600x900_2x.jpg",
+      commento:
+        "Una produzione incredibile dal punto di vista tecnico e narrativo, con una forte componente emotiva."
+    },
+
+    {
+      nome: "God of War Ragnarök",
+      voti: [8,9,10,10,9,8,7],
+      completamento: 91,
+      platino: true,
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/2322010/library_600x900_2x.jpg",
+      commento:
+        "Grande avventura, combattimenti solidi e una produzione tecnica di altissimo livello."
+    },
+
+    {
+      nome: "Batman: Arkham Knight",
+      voti: [9,9,9,8,8,8,8],
+      completamento: 0,
+      platino: false,
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/208650/library_600x900_2x.jpg",
+      commento:
+        "Uno dei migliori giochi dedicati a Batman. Gotham, combattimento e atmosfera funzionano ancora alla grande."
+    },
+
+    {
+      nome: "Marvel's Spider-Man 2",
+      voti: [7,9,8,8,7,7,7],
+      completamento: 97,
+      platino: true,
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/2651280/library_600x900_2x.jpg",
+      commento:
+        "Divertente, spettacolare e molto fluido. Il sistema di movimento resta uno dei suoi punti forti."
+    },
+
+    {
+      nome: "WWE 2K26",
+      voti: [7,9,5,8,9,4,9],
+      completamento: 5,
+      platino: false,
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/3717070/library_600x900_2x.jpg",
+      commento:
+        "Molto divertente per chi ama il wrestling, con una grande quantità di contenuti e possibilità."
+    },
+
+    {
+      nome: "Grand Theft Auto V",
+      voti: [9,8,7,6,9,9,9],
+      completamento: 0,
+      platino: false,
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/library_600x900_2x.jpg",
+      commento:
+        "Un titolo che ha segnato una generazione. Open world, libertà e quantità di contenuti rimangono impressionanti."
+    }
+
+  ];
+
+
+  /* =====================================================
+     CALCOLO MEDIA
+  ===================================================== */
+
+  giochi.forEach(function (gioco) {
+
+    gioco.media =
+      gioco.voti.reduce(
+        (somma, voto) => somma + voto,
+        0
+      ) / gioco.voti.length;
+
+  });
+
+
+  /* ORDINA DAL VOTO PIÙ ALTO */
+
+  giochi.sort(function (a,b) {
+
+    return b.media - a.media;
+
+  });
+
+
+  /* =====================================================
+     KPI
+  ===================================================== */
+
+  const mediaGenerale =
+    giochi.reduce(
+      (somma,g) => somma + g.media,
+      0
+    ) / giochi.length;
+
+  document.getElementById("gameCount")
+    .textContent = giochi.length;
+
+  document.getElementById("gameAverage")
+    .textContent = mediaGenerale.toFixed(2);
+
+  document.getElementById("gameBest")
+    .textContent = giochi[0].media.toFixed(2);
+
+  document.getElementById("gamePlatinum")
+    .textContent =
+      giochi.filter(g => g.platino).length;
+
+
+  /* =====================================================
+     NOMI DEI CRITERI
+  ===================================================== */
+
+  const criteri = [
+
+    "Storia",
+
+    "Gameplay",
+
+    "Grafica",
+
+    "Atmosfera",
+
+    "Esplorazione",
+
+    "Longevità",
+
+    "Divertimento"
+
+  ];
+
+
+  /* =====================================================
+     GENERAZIONE CLASSIFICA
+  ===================================================== */
+
+  const lista =
+    document.getElementById("gamingList");
+
+
+  giochi.forEach(function (gioco,index) {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "game-card";
+
+
+    const cover =
+      document.createElement("img");
+
+    cover.className = "game-cover-small";
+
+    cover.src = gioco.cover;
+
+    cover.alt = gioco.nome;
+
+    cover.onerror = function () {
+
+      this.style.display = "none";
+
+    };
+
+
+    const info =
+      document.createElement("div");
+
+
+    const rank =
+      document.createElement("div");
+
+    rank.className = "game-rank";
+
+    rank.textContent =
+      "#" + (index + 1);
+
+
+    const nome =
+      document.createElement("div");
+
+    nome.className = "game-name";
+
+    nome.textContent = gioco.nome;
+
+
+    const bar =
+      document.createElement("div");
+
+    bar.className = "game-bar";
+
+
+    const fill =
+      document.createElement("div");
+
+    fill.className = "game-bar-fill";
+
+    fill.style.width =
+      (gioco.media * 10) + "%";
+
+
+    bar.appendChild(fill);
+
+
+    info.appendChild(rank);
+
+    info.appendChild(nome);
+
+    info.appendChild(bar);
+
+
+    const score =
+      document.createElement("div");
+
+    score.className = "game-score";
+
+    score.textContent =
+      gioco.media.toFixed(2);
+
+
+    card.appendChild(cover);
+
+    card.appendChild(info);
+
+    card.appendChild(score);
+
+
+    card.addEventListener(
+      "click",
+      function () {
+
+        apriGioco(gioco);
+
+      }
+    );
+
+
+    lista.appendChild(card);
+
+  });
+
+
+  /* =====================================================
+     DETTAGLIO
+  ===================================================== */
+
+  function apriGioco(gioco) {
+
+    const content =
+      document.getElementById(
+        "gameDetailContent"
+      );
+
+
+    let dataset = "";
+
+
+    gioco.voti.forEach(
+      function (voto,index) {
+
+        dataset += `
+
+          <div class="dataset-row">
+
+            <div>
+              ${criteri[index]}
+            </div>
+
+            <div class="dataset-score">
+              ${voto.toFixed(1)} / 10
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    );
+
+
+    content.innerHTML = `
+
+      <div class="game-detail-header">
+
+        <img
+          class="game-detail-cover"
+          src="${gioco.cover}"
+          alt="${gioco.nome}"
+        >
+
+        <div>
+
+          <div class="game-detail-title">
+            ${gioco.nome}
+          </div>
+
+          <div class="game-detail-score">
+
+            ${gioco.media.toFixed(2)}
+
+            <span>/ 10</span>
+
+          </div>
+
+          <div style="
+            color:#8292a3;
+            margin-top:8px;
+          ">
+
+            ${gioco.platino
+              ? "🏆 Platino ottenuto"
+              : "🎮 In progress"}
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="dataset">
+
+        <div class="dataset-title">
+          📊 GAME DATA SHEET
+        </div>
+
+        ${dataset}
+
+      </div>
+
+
+      <div class="completion">
+
+        <div class="completion-top">
+
+          <strong>
+            Trofei / completamento
+          </strong>
+
+          <strong>
+            ${gioco.completamento}%
+          </strong>
+
+        </div>
+
+        <div class="completion-bar">
+
+          <div
+            class="completion-fill"
+            style="
+              width:${gioco.completamento}%
+            "
+          ></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="game-comment">
+
+        💬 <strong>Il mio commento</strong>
+
+        <br><br>
+
+        ${gioco.commento}
+
+      </div>
+
+    `;
+
+
+    document
+      .getElementById("gameDetailOverlay")
+      .classList.add("open");
+
+  }
+
+
+  /* =====================================================
+     APERTURA VIDEOGIOCHI
+  ===================================================== */
+
+  const videogiochi =
+    [...document.querySelectorAll(".interest")]
+      .find(function(el) {
+
+        return el.textContent
+          .trim()
+          .includes("Videogiochi");
+
+      });
+
+
+  const gamingOverlay =
+    document.getElementById(
+      "gamingOverlay"
+    );
+
+
+  if (videogiochi) {
+
+    videogiochi.style.cursor =
+      "pointer";
+
+    videogiochi.addEventListener(
+      "click",
+      function () {
+
+        gamingOverlay
+          .classList.add("open");
+
+        document.body.style.overflow =
+          "hidden";
+
+      }
+    );
+
+  }
+
+
+  /* =====================================================
+     CHIUSURA DASHBOARD
+  ===================================================== */
+
+  document
+    .getElementById("gamingClose")
+    .addEventListener(
+      "click",
+      function () {
+
+        gamingOverlay
+          .classList.remove("open");
+
+        document.body.style.overflow = "";
+
+      }
+    );
+
+
+  /* =====================================================
+     DETTAGLIO - CHIUDI
+  ===================================================== */
+
+  document
+    .getElementById("gameDetailClose")
+    .addEventListener(
+      "click",
+      function () {
+
+        document
+          .getElementById(
+            "gameDetailOverlay"
+          )
+          .classList.remove("open");
+
+      }
+    );
+
+
+  /* CLICK FUORI */
+
+  document
+    .getElementById("gameDetailOverlay")
+    .addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          event.target === this
+        ) {
+
+          this.classList
+            .remove("open");
+
+        }
+
+      }
+    );
+
+
+  /* ESC */
+
+  document.addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Escape"
+      ) {
+
+        document
+          .getElementById(
+            "gameDetailOverlay"
+          )
+          .classList.remove("open");
+
+        gamingOverlay
+          .classList.remove("open");
+
+        document.body.style.overflow =
+          "";
+
+      }
+
+    }
+  );
+
+});
+
+</script>
 
 </body>
 </html>
