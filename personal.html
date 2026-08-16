@@ -505,6 +505,186 @@ h1 {
 
 
 </div>
+  <script>
+document.addEventListener("DOMContentLoaded", async function () {
+
+  const repo = "matteodelorenzi9136-hub/Matteo-de-Lorenzi";
+
+  // Trova automaticamente il riquadro Tecnologia
+  const tecnologia = [...document.querySelectorAll(".interest")]
+    .find(el => el.textContent.trim().includes("Tecnologia"));
+
+  if (!tecnologia) return;
+
+  tecnologia.style.cursor = "pointer";
+
+  // Recupera automaticamente le immagini JPG dal repository
+  let immagini = [];
+
+  try {
+    const risposta = await fetch(
+      `https://api.github.com/repos/${repo}/contents/`
+    );
+
+    const files = await risposta.json();
+
+    immagini = files
+      .filter(file =>
+        file.type === "file" &&
+        /\.(jpg|jpeg|png|webp)$/i.test(file.name)
+      )
+      .map(file => file.download_url);
+
+  } catch (errore) {
+    console.error("Errore caricamento immagini:", errore);
+    return;
+  }
+
+  if (!immagini.length) return;
+
+  tecnologia.addEventListener("click", function () {
+
+    let indice = 0;
+
+    const overlay = document.createElement("div");
+
+    overlay.style.cssText = `
+      position:fixed;
+      inset:0;
+      z-index:99999;
+      background:rgba(0,0,0,.94);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    `;
+
+    const foto = document.createElement("img");
+
+    foto.style.cssText = `
+      max-width:90vw;
+      max-height:85vh;
+      object-fit:contain;
+      border-radius:16px;
+      box-shadow:0 10px 40px rgba(0,0,0,.5);
+    `;
+
+    const chiudi = document.createElement("button");
+    chiudi.textContent = "×";
+
+    chiudi.style.cssText = `
+      position:fixed;
+      top:20px;
+      right:20px;
+      width:48px;
+      height:48px;
+      border:0;
+      border-radius:50%;
+      background:white;
+      color:#168bd0;
+      font-size:30px;
+      cursor:pointer;
+      z-index:2;
+    `;
+
+    const precedente = document.createElement("button");
+    precedente.textContent = "‹";
+
+    precedente.style.cssText = `
+      position:fixed;
+      left:15px;
+      top:50%;
+      transform:translateY(-50%);
+      width:52px;
+      height:52px;
+      border:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.2);
+      color:white;
+      font-size:42px;
+      cursor:pointer;
+    `;
+
+    const successiva = document.createElement("button");
+    successiva.textContent = "›";
+
+    successiva.style.cssText = `
+      position:fixed;
+      right:15px;
+      top:50%;
+      transform:translateY(-50%);
+      width:52px;
+      height:52px;
+      border:0;
+      border-radius:50%;
+      background:rgba(255,255,255,.2);
+      color:white;
+      font-size:42px;
+      cursor:pointer;
+    `;
+
+    const contatore = document.createElement("div");
+
+    contatore.style.cssText = `
+      position:fixed;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      color:white;
+      background:rgba(0,0,0,.55);
+      padding:8px 15px;
+      border-radius:20px;
+      font-family:Arial,sans-serif;
+      font-size:14px;
+    `;
+
+    function aggiorna() {
+      foto.src = immagini[indice];
+      contatore.textContent =
+        `${indice + 1} / ${immagini.length}`;
+    }
+
+    precedente.onclick = function () {
+      indice--;
+
+      if (indice < 0) {
+        indice = immagini.length - 1;
+      }
+
+      aggiorna();
+    };
+
+    successiva.onclick = function () {
+      indice++;
+
+      if (indice >= immagini.length) {
+        indice = 0;
+      }
+
+      aggiorna();
+    };
+
+    chiudi.onclick = function () {
+      overlay.remove();
+      document.body.style.overflow = "";
+    };
+
+    overlay.appendChild(foto);
+    overlay.appendChild(chiudi);
+    overlay.appendChild(precedente);
+    overlay.appendChild(successiva);
+    overlay.appendChild(contatore);
+
+    document.body.appendChild(overlay);
+
+    document.body.style.overflow = "hidden";
+
+    aggiorna();
+
+  });
+
+});
+        </script>
 
 </body>
 </html>
