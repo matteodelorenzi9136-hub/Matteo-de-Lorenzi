@@ -685,6 +685,320 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 });
         </script>
+  <!-- MAPPA VIAGGI -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<style>
+#travelMapOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background: rgba(0,0,0,.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+#travelMapOverlay.open {
+  display: flex;
+}
+
+#travelMapBox {
+  width: 100%;
+  max-width: 1100px;
+  height: 90vh;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4);
+}
+
+#travelMap {
+  width: 100%;
+  height: 100%;
+}
+
+#travelMapTitle {
+  position: absolute;
+  z-index: 1000;
+  top: 15px;
+  left: 15px;
+  background: rgba(255,255,255,.95);
+  padding: 10px 15px;
+  border-radius: 14px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  color: #168bd0;
+  box-shadow: 0 3px 12px rgba(0,0,0,.15);
+}
+
+#travelMapClose {
+  position: absolute;
+  z-index: 1001;
+  top: 12px;
+  right: 12px;
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  background: white;
+  color: #168bd0;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 3px 12px rgba(0,0,0,.2);
+}
+
+.travel-country {
+  fill: #55bce9;
+  fill-opacity: .85;
+  stroke: white;
+  stroke-width: 1;
+  transition: .2s;
+}
+
+.travel-country:hover {
+  fill: #168bd0;
+  fill-opacity: 1;
+}
+
+.travel-not-visited {
+  fill: #dfe7eb;
+  fill-opacity: .8;
+  stroke: white;
+  stroke-width: 1;
+}
+
+@media (max-width:700px) {
+  #travelMapBox {
+    height: 88vh;
+    border-radius: 18px;
+  }
+
+  #travelMapTitle {
+    font-size: 14px;
+  }
+}
+</style>
+
+<div id="travelMapOverlay">
+
+  <div id="travelMapBox">
+
+    <div id="travelMapTitle">
+      🌍 I miei viaggi · 13 Paesi
+    </div>
+
+    <button id="travelMapClose" type="button">
+      ×
+    </button>
+
+    <div id="travelMap"></div>
+
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* PAESI VISITATI */
+
+  const paesiVisitati = [
+    "Italy",
+    "Spain",
+    "France",
+    "Latvia",
+    "Malta",
+    "Madagascar",
+    "Austria",
+    "Slovenia",
+    "Turkey",
+    "San Marino",
+    "Switzerland",
+    "Greece",
+    "Ethiopia"
+  ];
+
+  const viaggi = [...document.querySelectorAll(".interest")]
+    .find(el =>
+      el.textContent.trim().includes("Viaggi")
+    );
+
+  if (!viaggi) return;
+
+  viaggi.style.cursor = "pointer";
+
+  const overlay =
+    document.getElementById("travelMapOverlay");
+
+  const close =
+    document.getElementById("travelMapClose");
+
+  let map = null;
+
+  viaggi.addEventListener("click", async function () {
+
+    overlay.classList.add("open");
+
+    document.body.style.overflow = "hidden";
+
+    if (map) {
+      setTimeout(() => map.invalidateSize(), 100);
+      return;
+    }
+
+    map = L.map("travelMap", {
+      worldCopyJump: true,
+      minZoom: 2,
+      maxZoom: 7
+    }).setView([25, 10], 2);
+
+    L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        attribution:
+          '&copy; OpenStreetMap contributors',
+        maxZoom: 19
+      }
+    ).addTo(map);
+
+    try {
+
+      const response = await fetch(
+        "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson"
+      );
+
+      const data = await response.json();
+
+      L.geoJSON(data, {
+
+        style: function (feature) {
+
+          const nome =
+            feature.properties.ADMIN ||
+            feature.properties.name ||
+            "";
+
+          const visitato =
+            paesiVisitati.includes(nome);
+
+          return {
+            className: visitato
+              ? "travel-country"
+              : "travel-not-visited",
+
+            fillColor: visitato
+              ? "#168bd0"
+              : "#dfe7eb",
+
+            fillOpacity: visitato
+              ? .85
+              : .65,
+
+            color: "#ffffff",
+            weight: 1
+          };
+
+        },
+
+        onEachFeature: function (feature, layer) {
+
+          const nome =
+            feature.properties.ADMIN ||
+            feature.properties.name ||
+            "Paese";
+
+          const visitato =
+            paesiVisitati.includes(nome);
+
+          layer.bindPopup(
+            visitato
+              ? "✈️ <strong>" + nome +
+                "</strong><br>Paese visitato"
+              : nome
+          );
+
+          if (visitato) {
+
+            layer.on({
+              mouseover: function () {
+                this.setStyle({
+                  fillColor: "#0b6fae",
+                  fillOpacity: 1
+                });
+              },
+
+              mouseout: function () {
+                this.setStyle({
+                  fillColor: "#168bd0",
+                  fillOpacity: .85
+                });
+              }
+            });
+
+          }
+
+        }
+
+      }).addTo(map);
+
+    } catch (errore) {
+
+      console.error(
+        "Errore caricamento mappa:",
+        errore
+      );
+
+    }
+
+  });
+
+  close.addEventListener("click", function () {
+
+    overlay.classList.remove("open");
+
+    document.body.style.overflow = "";
+
+  });
+
+  overlay.addEventListener("click", function (event) {
+
+    if (event.target === overlay) {
+
+      overlay.classList.remove("open");
+
+      document.body.style.overflow = "";
+
+    }
+
+  });
+
+  document.addEventListener("keydown", function (event) {
+
+    if (
+      event.key === "Escape" &&
+      overlay.classList.contains("open")
+    ) {
+
+      overlay.classList.remove("open");
+
+      document.body.style.overflow = "";
+
+    }
+
+  });
+
+});
+
+</script>
 
 </body>
 </html>
