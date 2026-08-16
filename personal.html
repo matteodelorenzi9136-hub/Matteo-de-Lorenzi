@@ -1001,6 +1001,514 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
+  <!-- RICETTA COSTINE BBQ AL KAMADO -->
+
+<style>
+
+#bbqOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99997;
+  background: rgba(0,0,0,.86);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+#bbqOverlay.open {
+  display: flex;
+}
+
+#bbqRecipe {
+  width: 100%;
+  max-width: 720px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 24px;
+  color: #263746;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+
+.bbq-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #d35400;
+  margin-bottom: 5px;
+}
+
+.bbq-subtitle {
+  text-align: center;
+  color: #718391;
+  margin-bottom: 24px;
+}
+
+.bbq-section {
+  background: #fff7f0;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.bbq-section h3 {
+  margin: 0 0 12px;
+  color: #d35400;
+  font-size: 20px;
+}
+
+.bbq-section p,
+.bbq-section li {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.bbq-highlight {
+  background: #fff0e4;
+  border-left: 5px solid #d35400;
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.bbq-temp {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #c0392b;
+  margin: 10px 0;
+}
+
+.bbq-close {
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 15px;
+  background: #d35400;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bbq-close:hover {
+  background: #b94700;
+}
+
+@media (max-width:700px) {
+
+  #bbqRecipe {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .bbq-title {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+
+<div id="bbqOverlay">
+
+  <div id="bbqRecipe">
+
+    <div class="bbq-title">
+      🔥 Costine BBQ al Kamado
+    </div>
+
+    <div class="bbq-subtitle">
+      American BBQ · Affumicatura al ciliegio · Cottura indiretta
+    </div>
+
+
+    <!-- INGREDIENTI -->
+
+    <div class="bbq-section">
+
+      <h3>🥩 Ingredienti</h3>
+
+      <ul>
+
+        <li>2 kg circa di costine di maiale</li>
+
+        <li>30 g paprika dolce</li>
+
+        <li>20 g zucchero di canna</li>
+
+        <li>15 g sale fino</li>
+
+        <li>10 g pepe nero</li>
+
+        <li>8 g aglio in polvere</li>
+
+        <li>5 g cipolla in polvere</li>
+
+        <li>3 g peperoncino</li>
+
+        <li>3 g senape in polvere</li>
+
+        <li>Senape gialla per la base del rub</li>
+
+      </ul>
+
+    </div>
+
+
+    <!-- KAMADO -->
+
+    <div class="bbq-section">
+
+      <h3>🔥 Preparazione del Kamado</h3>
+
+      <p>
+
+        Prepara il Kamado per una cottura
+
+        <strong>indiretta</strong>.
+
+      </p>
+
+      <div class="bbq-highlight">
+
+        🌡️ Temperatura: 115 °C
+
+      </div>
+
+      <p>
+
+        Installa il deflettore per la cottura indiretta.
+
+        Aggiungi 2–3 piccoli pezzi di legno di
+
+        <strong>ciliegio</strong> sul carbone.
+
+      </p>
+
+      <p>
+
+        Stabilizza la temperatura prima di inserire
+
+        le costine.
+
+      </p>
+
+    </div>
+
+
+    <!-- RUB -->
+
+    <div class="bbq-section">
+
+      <h3>🧂 Preparazione delle costine</h3>
+
+      <ol>
+
+        <li>
+
+          Rimuovi la membrana dalla parte interna
+
+          delle costine.
+
+        </li>
+
+        <li>
+
+          Spalma un velo sottile di senape gialla.
+
+        </li>
+
+        <li>
+
+          Ricopri uniformemente con il rub.
+
+        </li>
+
+        <li>
+
+          Lascia riposare 30–60 minuti.
+
+        </li>
+
+      </ol>
+
+    </div>
+
+
+    <!-- FASE 1 -->
+
+    <div class="bbq-section">
+
+      <h3>🌳 Fase 1 — Affumicatura</h3>
+
+      <div class="bbq-temp">
+
+        2,5–3 ore · 115 °C
+
+      </div>
+
+      <p>
+
+        Posiziona le costine nella zona indiretta
+
+        con il lato dell'osso rivolto verso il basso.
+
+      </p>
+
+      <p>
+
+        Chiudi il Kamado e limita al minimo
+
+        le aperture durante la cottura.
+
+      </p>
+
+      <p>
+
+        Dopo circa 3 ore dovrebbe essersi formato
+
+        un buon <strong>bark</strong>.
+
+      </p>
+
+    </div>
+
+
+    <!-- FASE 2 -->
+
+    <div class="bbq-section">
+
+      <h3>🍎 Fase 2 — Wrap</h3>
+
+      <div class="bbq-temp">
+
+        1,5–2 ore · 115 °C
+
+      </div>
+
+      <p>
+
+        Avvolgi le costine in un doppio strato
+
+        di alluminio.
+
+      </p>
+
+      <p>Per ogni rack aggiungi:</p>
+
+      <ul>
+
+        <li>25 g burro</li>
+
+        <li>1 cucchiaio zucchero di canna</li>
+
+        <li>50–70 ml succo di mela</li>
+
+        <li>Un piccolo spruzzo di salsa BBQ</li>
+
+      </ul>
+
+      <p>
+
+        Chiudi molto bene il cartoccio per mantenere
+
+        all'interno i liquidi.
+
+      </p>
+
+    </div>
+
+
+    <!-- FASE 3 -->
+
+    <div class="bbq-section">
+
+      <h3>🍯 Fase 3 — Finitura</h3>
+
+      <div class="bbq-temp">
+
+        30–45 minuti
+      </div>
+
+      <p>
+
+        Rimuovi le costine dal wrap.
+
+        Spennella con salsa BBQ e rimettile
+
+        sul Kamado in cottura indiretta.
+
+      </p>
+
+      <p>
+
+        Negli ultimi 10–15 minuti puoi aggiungere
+
+        un'altra spennellata di salsa.
+
+      </p>
+
+      <div class="bbq-highlight">
+
+        Obiettivo: salsa lucida e caramellizzata,
+
+        senza bruciarla.
+
+      </div>
+
+    </div>
+
+
+    <!-- COTTURA -->
+
+    <div class="bbq-section">
+
+      <h3>🌡️ Quando sono pronte?</h3>
+
+      <p>
+
+        La temperatura interna indicativa è
+
+        <strong>93–96 °C</strong>.
+
+      </p>
+
+      <p>
+
+        Il vero indicatore, però, è la consistenza:
+
+        inserendo una sonda tra le ossa deve entrare
+
+        con pochissima resistenza.
+
+      </p>
+
+    </div>
+
+
+    <!-- RIPOSO -->
+
+    <div class="bbq-section">
+
+      <h3>🛌 Riposo</h3>
+
+      <p>
+
+        Togli le costine dal Kamado e lasciale
+
+        riposare per <strong>10–15 minuti</strong>.
+
+      </p>
+
+      <p>
+
+        Taglia quindi tra le ossa e servi.
+
+      </p>
+
+    </div>
+
+
+    <div class="bbq-highlight">
+
+      🔥 Risultato: bark croccante, profumo di ciliegio,
+
+      carne tenera ma ancora strutturata e salsa BBQ
+
+      caramellizzata.
+
+    </div>
+
+
+    <br>
+
+
+    <button
+      class="bbq-close"
+      id="bbqClose"
+      type="button"
+    >
+
+      🔥 Chiudi ricetta
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const barbecue = [...document.querySelectorAll(".interest")]
+    .find(el =>
+      el.textContent.trim().includes("Barbecue")
+    );
+
+  const overlay =
+    document.getElementById("bbqOverlay");
+
+  const close =
+    document.getElementById("bbqClose");
+
+  if (!barbecue || !overlay) return;
+
+  barbecue.style.cursor = "pointer";
+
+  barbecue.addEventListener("click", function () {
+
+    overlay.classList.add("open");
+
+    document.body.style.overflow = "hidden";
+
+  });
+
+  close.addEventListener("click", function () {
+
+    overlay.classList.remove("open");
+
+    document.body.style.overflow = "";
+
+  });
+
+  overlay.addEventListener("click", function (event) {
+
+    if (event.target === overlay) {
+
+      overlay.classList.remove("open");
+
+      document.body.style.overflow = "";
+
+    }
+
+  });
+
+  document.addEventListener("keydown", function (event) {
+
+    if (
+      event.key === "Escape" &&
+      overlay.classList.contains("open")
+    ) {
+
+      overlay.classList.remove("open");
+
+      document.body.style.overflow = "";
+
+    }
+
+  });
+
+});
+
+</script>
 
 </body>
 </html>
