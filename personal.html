@@ -16,7 +16,12 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(180deg, #e8f7ff 0%, #ffffff 50%, #dff3ff 100%);
+  background: linear-gradient(
+    180deg,
+    #e8f7ff 0%,
+    #ffffff 50%,
+    #dff3ff 100%
+  );
   color: #263746;
 }
 
@@ -27,14 +32,14 @@ body {
   padding: 16px;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 
 .hero {
   background: #ffffff;
   border-radius: 28px;
   padding: 32px 20px;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(0, 120, 190, 0.12);
+  box-shadow: 0 8px 30px rgba(0,120,190,.12);
   border: 1px solid #d5edf9;
 }
 
@@ -44,7 +49,7 @@ body {
   object-fit: cover;
   border-radius: 50%;
   border: 5px solid #55bce9;
-  box-shadow: 0 7px 20px rgba(0, 120, 190, 0.18);
+  box-shadow: 0 7px 20px rgba(0,120,190,.18);
 }
 
 h1 {
@@ -67,7 +72,7 @@ h1 {
   color: #536773;
 }
 
-/* SEZIONI */
+/* ================= SEZIONI ================= */
 
 .section {
   background: #ffffff;
@@ -75,7 +80,7 @@ h1 {
   padding: 25px;
   border-radius: 24px;
   border: 1px solid #d5edf9;
-  box-shadow: 0 7px 25px rgba(0, 120, 190, 0.08);
+  box-shadow: 0 7px 25px rgba(0,120,190,.08);
 }
 
 .section h2 {
@@ -85,11 +90,11 @@ h1 {
   font-size: 27px;
 }
 
-/* INTERESSI */
+/* ================= PASSIONI ================= */
 
 .interests {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4,1fr);
   gap: 14px;
 }
 
@@ -100,15 +105,18 @@ h1 {
   justify-content: center;
   align-items: center;
   text-align: center;
-
   background: #f2faff;
   border: 1px solid #d7edf8;
   border-radius: 18px;
-
   padding: 15px 8px;
-
   font-size: 16px;
   font-weight: bold;
+  transition: .2s;
+}
+
+.interest:hover {
+  transform: translateY(-3px);
+  background: #e5f6ff;
 }
 
 .interest-icon {
@@ -116,12 +124,13 @@ h1 {
   margin-bottom: 10px;
 }
 
-/* INFO PERSONALI */
+/* ================= INFO ================= */
 
 .personal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  margin-top: 20px;
 }
 
 .info {
@@ -132,7 +141,8 @@ h1 {
 }
 
 .info h2 {
-  margin-bottom: 18px;
+  margin-top: 0;
+  color: #168bd0;
 }
 
 .info-list {
@@ -140,15 +150,11 @@ h1 {
   line-height: 1.9;
 }
 
-.info-list div {
-  padding: 3px 0;
-}
-
-/* SOCIAL */
+/* ================= SOCIAL ================= */
 
 .social {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4,1fr);
   gap: 12px;
 }
 
@@ -157,17 +163,13 @@ h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   min-height: 115px;
-
   text-decoration: none;
   color: #263746;
-
   background: #f3faff;
   border: 1px solid #d5edf9;
   border-radius: 18px;
-
-  transition: transform 0.2s, background 0.2s;
+  transition: .2s;
 }
 
 .social a:hover {
@@ -185,7 +187,7 @@ h1 {
   font-weight: bold;
 }
 
-/* PULSANTI */
+/* ================= BUTTON ================= */
 
 .buttons {
   display: grid;
@@ -198,14 +200,10 @@ h1 {
   display: block;
   padding: 16px;
   text-align: center;
-
   text-decoration: none;
-
   border-radius: 16px;
-
   background: #168bd0;
   color: #ffffff;
-
   font-size: 17px;
   font-weight: bold;
 }
@@ -216,7 +214,7 @@ h1 {
   border: 2px solid #168bd0;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 .footer {
   text-align: center;
@@ -225,62 +223,585 @@ h1 {
   font-size: 15px;
 }
 
-/* SMARTPHONE */
+/* =========================================================
+   TECNOLOGIA
+========================================================= */
 
-@media (max-width: 700px) {
+#techOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.94);
+  padding: 20px;
+}
+
+#techOverlay.open {
+  display: flex;
+}
+
+#techPhoto {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.tech-close,
+.tech-nav {
+  position: fixed;
+  border: 0;
+  cursor: pointer;
+}
+
+.tech-close {
+  top: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  color: #168bd0;
+  font-size: 30px;
+}
+
+.tech-prev,
+.tech-next {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  color: white;
+  font-size: 42px;
+}
+
+.tech-prev {
+  left: 15px;
+}
+
+.tech-next {
+  right: 15px;
+}
+
+#techCounter {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background: rgba(0,0,0,.55);
+  padding: 8px 15px;
+  border-radius: 20px;
+}
+
+/* =========================================================
+   MAPPA
+========================================================= */
+
+#travelMapOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background: rgba(0,0,0,.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+#travelMapOverlay.open {
+  display: flex;
+}
+
+#travelMapBox {
+  width: 100%;
+  max-width: 1100px;
+  height: 90vh;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+#travelMap {
+  width: 100%;
+  height: 100%;
+}
+
+#travelMapTitle {
+  position: absolute;
+  z-index: 1000;
+  top: 15px;
+  left: 15px;
+  background: rgba(255,255,255,.95);
+  padding: 10px 15px;
+  border-radius: 14px;
+  font-weight: bold;
+  color: #168bd0;
+}
+
+#travelMapClose {
+  position: absolute;
+  z-index: 1001;
+  top: 12px;
+  right: 12px;
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  background: white;
+  color: #168bd0;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   BBQ
+========================================================= */
+
+#bbqOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99997;
+  background: rgba(0,0,0,.86);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+#bbqOverlay.open {
+  display: flex;
+}
+
+#bbqRecipe {
+  width: 100%;
+  max-width: 720px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 25px;
+  padding: 24px;
+}
+
+.bbq-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #d35400;
+}
+
+.bbq-subtitle {
+  text-align: center;
+  color: #718391;
+  margin-bottom: 24px;
+}
+
+.bbq-section {
+  background: #fff7f0;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.bbq-section h3 {
+  margin: 0 0 12px;
+  color: #d35400;
+}
+
+.bbq-section p,
+.bbq-section li {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.bbq-highlight {
+  background: #fff0e4;
+  border-left: 5px solid #d35400;
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.bbq-temp {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #c0392b;
+}
+
+.bbq-close {
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 15px;
+  background: #d35400;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+/* =========================================================
+   GAMING DASHBOARD
+========================================================= */
+
+#gamingOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99996;
+  display: none;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(0,120,255,.18),
+      transparent 35%
+    ),
+    #080b10;
+  overflow-y: auto;
+  color: white;
+}
+
+#gamingOverlay.open {
+  display: block;
+}
+
+.gaming-dashboard {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.gaming-header {
+  background: linear-gradient(135deg,#111923,#0b1119);
+  border: 1px solid #263544;
+  border-radius: 25px;
+  padding: 25px;
+}
+
+.gaming-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gaming-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.gaming-subtitle {
+  color: #8ea0b3;
+  margin-top: 5px;
+}
+
+.gaming-close {
+  width: 45px;
+  height: 45px;
+  border: 0;
+  border-radius: 50%;
+  background: white;
+  color: #111;
+  font-size: 28px;
+}
+
+.gaming-kpis {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.gaming-kpi {
+  background: #171e27;
+  border: 1px solid #283543;
+  border-radius: 18px;
+  padding: 18px;
+  text-align: center;
+}
+
+.gaming-kpi-number {
+  font-size: 28px;
+  font-weight: bold;
+  color: #55bce9;
+}
+
+.gaming-kpi-label {
+  color: #8796a6;
+  font-size: 14px;
+}
+
+.gaming-section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 22px 0 12px;
+}
+
+.gaming-list {
+  display: grid;
+  gap: 12px;
+}
+
+.game-card {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  background: #11171f;
+  border: 1px solid #263442;
+  border-radius: 20px;
+  padding: 12px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.game-card:hover {
+  transform: translateY(-2px);
+  border-color: #168bd0;
+}
+
+.game-cover-small {
+  width: 90px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.game-rank {
+  color: #758697;
+  font-size: 13px;
+}
+
+.game-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.game-bar {
+  height: 7px;
+  background: #252d36;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.game-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg,#168bd0,#55bce9);
+}
+
+.game-score {
+  font-size: 28px;
+  font-weight: bold;
+  color: #55bce9;
+}
+
+#gameDetailOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99997;
+  display: none;
+  background: rgba(0,0,0,.88);
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+#gameDetailOverlay.open {
+  display: flex;
+}
+
+.game-detail {
+  width: 100%;
+  max-width: 850px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: #10161e;
+  border-radius: 25px;
+  padding: 22px;
+}
+
+.game-detail-header {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 22px;
+}
+
+.game-detail-cover {
+  width: 180px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.game-detail-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.game-detail-score {
+  font-size: 52px;
+  font-weight: bold;
+  color: #55bce9;
+  margin-top: 10px;
+}
+
+.dataset {
+  margin-top: 25px;
+  background: #151c24;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.dataset-title {
+  padding: 15px;
+  font-weight: bold;
+  color: #55bce9;
+}
+
+.dataset-row {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  padding: 12px 15px;
+  border-top: 1px solid #242e38;
+}
+
+.dataset-score {
+  text-align: right;
+  font-weight: bold;
+}
+
+.completion {
+  margin-top: 20px;
+  background: #151c24;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.completion-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.completion-bar {
+  height: 9px;
+  background: #29313a;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.completion-fill {
+  height: 100%;
+  background: #55bce9;
+}
+
+.game-comment {
+  margin-top: 20px;
+  background: #18212b;
+  border-left: 4px solid #168bd0;
+  border-radius: 12px;
+  padding: 18px;
+  line-height: 1.6;
+  color: #c8d2dc;
+}
+
+.game-back {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+  border: 0;
+  border-radius: 15px;
+  background: #168bd0;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px) {
 
   .container {
     padding: 12px;
-  }
-
-  .hero {
-    padding: 28px 16px;
-  }
-
-  .photo {
-    width: 135px;
-    height: 135px;
   }
 
   h1 {
     font-size: 34px;
   }
 
-  .subtitle {
-    font-size: 18px;
-  }
-
-  /* 2 colonne perfettamente simmetriche */
-
   .interests {
     grid-template-columns: 1fr 1fr;
   }
-
-  .interest {
-    min-height: 115px;
-  }
-
-  /* INFO PERSONALI */
 
   .personal-grid {
     grid-template-columns: 1fr;
   }
 
-  /* SOCIAL 2x2 */
-
   .social {
     grid-template-columns: 1fr 1fr;
   }
-
-  /* PULSANTI */
 
   .buttons {
     grid-template-columns: 1fr;
   }
 
+  .gaming-kpis {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .game-card {
+    grid-template-columns: 65px 1fr auto;
+    gap: 10px;
+  }
+
+  .game-cover-small {
+    width: 65px;
+    height: 88px;
+  }
+
+  .game-name {
+    font-size: 15px;
+  }
+
+  .game-score {
+    font-size: 22px;
+  }
+
+  .game-detail-header {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .game-detail-cover {
+    width: 100px;
+    height: 135px;
+  }
+
+  .game-detail-title {
+    font-size: 21px;
+  }
+
+  .game-detail-score {
+    font-size: 38px;
+  }
+
+  #travelMapBox {
+    height: 88vh;
+  }
+
 }
 
 </style>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 
 </head>
 
@@ -288,8 +809,7 @@ h1 {
 
 <div class="container">
 
-
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
 <div class="hero">
 
@@ -314,7 +834,7 @@ h1 {
 </div>
 
 
-<!-- INTERESSI -->
+<!-- ================= PASSIONI ================= -->
 
 <div class="section">
 
@@ -347,10 +867,9 @@ h1 {
 </div>
 
 
-<!-- CHI SONO / UN PO' DI ME -->
+<!-- ================= INFO ================= -->
 
 <div class="personal-grid">
-
 
   <div class="info">
 
@@ -359,14 +878,10 @@ h1 {
     <div class="info-list">
 
       <div>💡 Curioso di natura</div>
-
       <div>🎯 Orientato agli obiettivi</div>
-
       <div>🧩 Pratico e determinato</div>
-
       <div>🙂 Leale e con i piedi per terra</div>
-
-      <div> 👰‍♀️🤵  Sposato con Tiziana</div>
+      <div>👰‍♀️🤵 Sposato con Tiziana</div>
 
     </div>
 
@@ -380,24 +895,19 @@ h1 {
     <div class="info-list">
 
       <div>📍 Brescia, Italia</div>
-
       <div>🎧 Musica: un po' di tutto</div>
-
       <div>🐾 Team cani 🐶</div>
-
       <div>🔴⚫ Tifoso del Milan</div>
-
       <div>🎬 Film & serie: dipende dal mood</div>
 
     </div>
 
   </div>
 
-
 </div>
 
 
-<!-- CONTATTI -->
+<!-- ================= SOCIAL ================= -->
 
 <div class="section">
 
@@ -405,71 +915,44 @@ h1 {
 
   <div class="social">
 
-
     <a
       href="https://www.instagram.com/delomatto/"
       target="_blank"
       rel="noopener noreferrer"
     >
-
       <span class="social-icon">📸</span>
-
-      <span class="social-name">
-        Instagram
-      </span>
-
+      <span class="social-name">Instagram</span>
     </a>
-
 
     <a
       href="https://www.linkedin.com/in/matteo-de-lorenzi-3a413b232/"
       target="_blank"
       rel="noopener noreferrer"
     >
-
       <span class="social-icon">💼</span>
-
-      <span class="social-name">
-        LinkedIn
-      </span>
-
+      <span class="social-name">LinkedIn</span>
     </a>
-
 
     <a
       href="https://wa.me/393335362069"
       target="_blank"
       rel="noopener noreferrer"
     >
-
       <span class="social-icon">💬</span>
-
-      <span class="social-name">
-        WhatsApp
-      </span>
-
+      <span class="social-name">WhatsApp</span>
     </a>
 
-
-    <a
-      href="mailto:Matteode.lorenzi9136@gmail.com"
-    >
-
+    <a href="mailto:Matteode.lorenzi9136@gmail.com">
       <span class="social-icon">✉️</span>
-
-      <span class="social-name">
-        Email
-      </span>
-
+      <span class="social-name">Email</span>
     </a>
-
 
   </div>
 
 </div>
 
 
-<!-- NAVIGAZIONE -->
+<!-- ================= NAVIGAZIONE ================= -->
 
 <div class="buttons">
 
@@ -479,7 +962,6 @@ h1 {
   >
     💼 Profilo professionale
   </a>
-
 
   <a
     href="index.html"
@@ -491,8 +973,6 @@ h1 {
 </div>
 
 
-<!-- FOOTER -->
-
 <div class="footer">
 
   Grazie per essere qui! ✌️
@@ -503,297 +983,63 @@ h1 {
 
 </div>
 
+</div>
+
+
+<!-- =========================================================
+     TECNOLOGIA OVERLAY
+========================================================= -->
+
+<div id="techOverlay">
+
+  <img
+    id="techPhoto"
+    src=""
+    alt="Tecnologia"
+  >
+
+  <button
+    class="tech-close"
+    id="techClose"
+  >
+    ×
+  </button>
+
+  <button
+    class="tech-nav tech-prev"
+    id="techPrev"
+  >
+    ‹
+  </button>
+
+  <button
+    class="tech-nav tech-next"
+    id="techNext"
+  >
+    ›
+  </button>
+
+  <div id="techCounter"></div>
 
 </div>
-  <script>
-document.addEventListener("DOMContentLoaded", async function () {
 
-  const repo = "matteodelorenzi9136-hub/Matteo-de-Lorenzi";
 
-  // Trova automaticamente il riquadro Tecnologia
-  const tecnologia = [...document.querySelectorAll(".interest")]
-    .find(el => el.textContent.trim().includes("Tecnologia"));
-
-  if (!tecnologia) return;
-
-  tecnologia.style.cursor = "pointer";
-
-  // Recupera automaticamente le immagini JPG dal repository
-  let immagini = [];
-
-  try {
-    const risposta = await fetch(
-      `https://api.github.com/repos/${repo}/contents/`
-    );
-
-    const files = await risposta.json();
-
-    immagini = files
-      .filter(file =>
-        file.type === "file" &&
-        /\.(jpg|jpeg|png|webp)$/i.test(file.name)
-      )
-      .map(file => file.download_url);
-
-  } catch (errore) {
-    console.error("Errore caricamento immagini:", errore);
-    return;
-  }
-
-  if (!immagini.length) return;
-
-  tecnologia.addEventListener("click", function () {
-
-    let indice = 0;
-
-    const overlay = document.createElement("div");
-
-    overlay.style.cssText = `
-      position:fixed;
-      inset:0;
-      z-index:99999;
-      background:rgba(0,0,0,.94);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-    `;
-
-    const foto = document.createElement("img");
-
-    foto.style.cssText = `
-      max-width:90vw;
-      max-height:85vh;
-      object-fit:contain;
-      border-radius:16px;
-      box-shadow:0 10px 40px rgba(0,0,0,.5);
-    `;
-
-    const chiudi = document.createElement("button");
-    chiudi.textContent = "×";
-
-    chiudi.style.cssText = `
-      position:fixed;
-      top:20px;
-      right:20px;
-      width:48px;
-      height:48px;
-      border:0;
-      border-radius:50%;
-      background:white;
-      color:#168bd0;
-      font-size:30px;
-      cursor:pointer;
-      z-index:2;
-    `;
-
-    const precedente = document.createElement("button");
-    precedente.textContent = "‹";
-
-    precedente.style.cssText = `
-      position:fixed;
-      left:15px;
-      top:50%;
-      transform:translateY(-50%);
-      width:52px;
-      height:52px;
-      border:0;
-      border-radius:50%;
-      background:rgba(255,255,255,.2);
-      color:white;
-      font-size:42px;
-      cursor:pointer;
-    `;
-
-    const successiva = document.createElement("button");
-    successiva.textContent = "›";
-
-    successiva.style.cssText = `
-      position:fixed;
-      right:15px;
-      top:50%;
-      transform:translateY(-50%);
-      width:52px;
-      height:52px;
-      border:0;
-      border-radius:50%;
-      background:rgba(255,255,255,.2);
-      color:white;
-      font-size:42px;
-      cursor:pointer;
-    `;
-
-    const contatore = document.createElement("div");
-
-    contatore.style.cssText = `
-      position:fixed;
-      bottom:20px;
-      left:50%;
-      transform:translateX(-50%);
-      color:white;
-      background:rgba(0,0,0,.55);
-      padding:8px 15px;
-      border-radius:20px;
-      font-family:Arial,sans-serif;
-      font-size:14px;
-    `;
-
-    function aggiorna() {
-      foto.src = immagini[indice];
-      contatore.textContent =
-        `${indice + 1} / ${immagini.length}`;
-    }
-
-    precedente.onclick = function () {
-      indice--;
-
-      if (indice < 0) {
-        indice = immagini.length - 1;
-      }
-
-      aggiorna();
-    };
-
-    successiva.onclick = function () {
-      indice++;
-
-      if (indice >= immagini.length) {
-        indice = 0;
-      }
-
-      aggiorna();
-    };
-
-    chiudi.onclick = function () {
-      overlay.remove();
-      document.body.style.overflow = "";
-    };
-
-    overlay.appendChild(foto);
-    overlay.appendChild(chiudi);
-    overlay.appendChild(precedente);
-    overlay.appendChild(successiva);
-    overlay.appendChild(contatore);
-
-    document.body.appendChild(overlay);
-
-    document.body.style.overflow = "hidden";
-
-    aggiorna();
-
-  });
-
-});
-        </script>
-  <!-- MAPPA VIAGGI -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
-
-<style>
-#travelMapOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99998;
-  background: rgba(0,0,0,.88);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-}
-
-#travelMapOverlay.open {
-  display: flex;
-}
-
-#travelMapBox {
-  width: 100%;
-  max-width: 1100px;
-  height: 90vh;
-  background: white;
-  border-radius: 24px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0,0,0,.4);
-}
-
-#travelMap {
-  width: 100%;
-  height: 100%;
-}
-
-#travelMapTitle {
-  position: absolute;
-  z-index: 1000;
-  top: 15px;
-  left: 15px;
-  background: rgba(255,255,255,.95);
-  padding: 10px 15px;
-  border-radius: 14px;
-  font-family: Arial, sans-serif;
-  font-weight: bold;
-  color: #168bd0;
-  box-shadow: 0 3px 12px rgba(0,0,0,.15);
-}
-
-#travelMapClose {
-  position: absolute;
-  z-index: 1001;
-  top: 12px;
-  right: 12px;
-  width: 45px;
-  height: 45px;
-  border: 0;
-  border-radius: 50%;
-  background: white;
-  color: #168bd0;
-  font-size: 28px;
-  cursor: pointer;
-  box-shadow: 0 3px 12px rgba(0,0,0,.2);
-}
-
-.travel-country {
-  fill: #55bce9;
-  fill-opacity: .85;
-  stroke: white;
-  stroke-width: 1;
-  transition: .2s;
-}
-
-.travel-country:hover {
-  fill: #168bd0;
-  fill-opacity: 1;
-}
-
-.travel-not-visited {
-  fill: #dfe7eb;
-  fill-opacity: .8;
-  stroke: white;
-  stroke-width: 1;
-}
-
-@media (max-width:700px) {
-  #travelMapBox {
-    height: 88vh;
-    border-radius: 18px;
-  }
-
-  #travelMapTitle {
-    font-size: 14px;
-  }
-}
-</style>
+<!-- =========================================================
+     MAPPA VIAGGI
+========================================================= -->
 
 <div id="travelMapOverlay">
 
   <div id="travelMapBox">
 
     <div id="travelMapTitle">
-      🌍 I miei viaggi · 13 Paesi
+      🌍 I miei viaggi · 14 Paesi
     </div>
 
-    <button id="travelMapClose" type="button">
+    <button
+      id="travelMapClose"
+      type="button"
+    >
       ×
     </button>
 
@@ -803,317 +1049,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  /* PAESI VISITATI */
-
-  const paesiVisitati = [
-    "Italy",
-    "Spain",
-    "France",
-    "Latvia",
-    "Malta",
-    "Madagascar",
-    "Austria",
-    "Slovenia",
-    "Turkey",
-    "San Marino",
-    "Switzerland",
-    "Greece",
-    "Ethiopia",
-    "Slovakia"
-    
-  ];  
-
-  const viaggi = [...document.querySelectorAll(".interest")]
-    .find(el =>
-      el.textContent.trim().includes("Viaggi")
-    );
-
-  if (!viaggi) return;
-
-  viaggi.style.cursor = "pointer";
-
-  const overlay =
-    document.getElementById("travelMapOverlay");
-
-  const close =
-    document.getElementById("travelMapClose");
-
-  let map = null;
-
-  viaggi.addEventListener("click", async function () {
-
-    overlay.classList.add("open");
-
-    document.body.style.overflow = "hidden";
-
-    if (map) {
-      setTimeout(() => map.invalidateSize(), 100);
-      return;
-    }
-
-    map = L.map("travelMap", {
-      worldCopyJump: true,
-      minZoom: 2,
-      maxZoom: 7
-    }).setView([25, 10], 2);
-
-    L.tileLayer(
-      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      {
-        attribution:
-          '&copy; OpenStreetMap contributors',
-        maxZoom: 19
-      }
-    ).addTo(map);
-
-    try {
-
-      const response = await fetch(
-        "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson"
-      );
-
-      const data = await response.json();
-
-      L.geoJSON(data, {
-
-        style: function (feature) {
-
-          const nome =
-            feature.properties.ADMIN ||
-            feature.properties.name ||
-            "";
-
-          const visitato =
-            paesiVisitati.includes(nome);
-
-          return {
-            className: visitato
-              ? "travel-country"
-              : "travel-not-visited",
-
-            fillColor: visitato
-              ? "#168bd0"
-              : "#dfe7eb",
-
-            fillOpacity: visitato
-              ? .85
-              : .65,
-
-            color: "#ffffff",
-            weight: 1
-          };
-
-        },
-
-        onEachFeature: function (feature, layer) {
-
-          const nome =
-            feature.properties.ADMIN ||
-            feature.properties.name ||
-            "Paese";
-
-          const visitato =
-            paesiVisitati.includes(nome);
-
-          layer.bindPopup(
-            visitato
-              ? "✈️ <strong>" + nome +
-                "</strong><br>Paese visitato"
-              : nome
-          );
-
-          if (visitato) {
-
-            layer.on({
-              mouseover: function () {
-                this.setStyle({
-                  fillColor: "#0b6fae",
-                  fillOpacity: 1
-                });
-              },
-
-              mouseout: function () {
-                this.setStyle({
-                  fillColor: "#168bd0",
-                  fillOpacity: .85
-                });
-              }
-            });
-
-          }
-
-        }
-
-      }).addTo(map);
-
-    } catch (errore) {
-
-      console.error(
-        "Errore caricamento mappa:",
-        errore
-      );
-
-    }
-
-  });
-
-  close.addEventListener("click", function () {
-
-    overlay.classList.remove("open");
-
-    document.body.style.overflow = "";
-
-  });
-
-  overlay.addEventListener("click", function (event) {
-
-    if (event.target === overlay) {
-
-      overlay.classList.remove("open");
-
-      document.body.style.overflow = "";
-
-    }
-
-  });
-
-  document.addEventListener("keydown", function (event) {
-
-    if (
-      event.key === "Escape" &&
-      overlay.classList.contains("open")
-    ) {
-
-      overlay.classList.remove("open");
-
-      document.body.style.overflow = "";
-
-    }
-
-  });
-
-});
-
-</script>
-  <!-- RICETTA COSTINE BBQ AL KAMADO -->
-
-<style>
-
-#bbqOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99997;
-  background: rgba(0,0,0,.86);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
-}
-
-#bbqOverlay.open {
-  display: flex;
-}
-
-#bbqRecipe {
-  width: 100%;
-  max-width: 720px;
-  max-height: 92vh;
-  overflow-y: auto;
-  background: #ffffff;
-  border-radius: 25px;
-  padding: 24px;
-  color: #263746;
-  font-family: Arial, Helvetica, sans-serif;
-  box-shadow: 0 20px 60px rgba(0,0,0,.45);
-}
-
-.bbq-title {
-  text-align: center;
-  font-size: 30px;
-  font-weight: bold;
-  color: #d35400;
-  margin-bottom: 5px;
-}
-
-.bbq-subtitle {
-  text-align: center;
-  color: #718391;
-  margin-bottom: 24px;
-}
-
-.bbq-section {
-  background: #fff7f0;
-  border-radius: 18px;
-  padding: 18px;
-  margin-bottom: 14px;
-}
-
-.bbq-section h3 {
-  margin: 0 0 12px;
-  color: #d35400;
-  font-size: 20px;
-}
-
-.bbq-section p,
-.bbq-section li {
-  font-size: 16px;
-  line-height: 1.65;
-}
-
-.bbq-highlight {
-  background: #fff0e4;
-  border-left: 5px solid #d35400;
-  border-radius: 12px;
-  padding: 14px;
-  margin-top: 12px;
-  font-weight: bold;
-}
-
-.bbq-temp {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  color: #c0392b;
-  margin: 10px 0;
-}
-
-.bbq-close {
-  width: 100%;
-  padding: 15px;
-  border: 0;
-  border-radius: 15px;
-  background: #d35400;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.bbq-close:hover {
-  background: #b94700;
-}
-
-@media (max-width:700px) {
-
-  #bbqRecipe {
-    padding: 18px;
-    border-radius: 20px;
-  }
-
-  .bbq-title {
-    font-size: 26px;
-  }
-
-}
-
-</style>
-
+<!-- =========================================================
+     BBQ
+========================================================= -->
 
 <div id="bbqOverlay">
 
@@ -1127,9 +1066,6 @@ document.addEventListener("DOMContentLoaded", function () {
       American BBQ · Affumicatura al ciliegio · Cottura indiretta
     </div>
 
-
-    <!-- INGREDIENTI -->
-
     <div class="bbq-section">
 
       <h3>🥩 Ingredienti</h3>
@@ -1137,72 +1073,42 @@ document.addEventListener("DOMContentLoaded", function () {
       <ul>
 
         <li>2 kg circa di costine di maiale</li>
-
         <li>30 g paprika dolce</li>
-
         <li>20 g zucchero di canna</li>
-
         <li>15 g sale fino</li>
-
         <li>10 g pepe nero</li>
-
         <li>8 g aglio in polvere</li>
-
         <li>5 g cipolla in polvere</li>
-
         <li>3 g peperoncino</li>
-
         <li>3 g senape in polvere</li>
-
-        <li>Senape gialla per la base del rub</li>
+        <li>Senape gialla</li>
 
       </ul>
 
     </div>
 
 
-    <!-- KAMADO -->
-
     <div class="bbq-section">
 
       <h3>🔥 Preparazione del Kamado</h3>
 
       <p>
-
         Prepara il Kamado per una cottura
-
         <strong>indiretta</strong>.
-
       </p>
 
       <div class="bbq-highlight">
-
         🌡️ Temperatura: 115 °C
-
       </div>
 
       <p>
-
-        Installa il deflettore per la cottura indiretta.
-
-        Aggiungi 2–3 piccoli pezzi di legno di
-
-        <strong>ciliegio</strong> sul carbone.
-
-      </p>
-
-      <p>
-
-        Stabilizza la temperatura prima di inserire
-
-        le costine.
-
+        Installa il deflettore e aggiungi
+        2–3 piccoli pezzi di legno di
+        <strong>ciliegio</strong>.
       </p>
 
     </div>
 
-
-    <!-- RUB -->
 
     <div class="bbq-section">
 
@@ -1210,206 +1116,106 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <ol>
 
-        <li>
-
-          Rimuovi la membrana dalla parte interna
-
-          delle costine.
-
-        </li>
-
-        <li>
-
-          Spalma un velo sottile di senape gialla.
-
-        </li>
-
-        <li>
-
-          Ricopri uniformemente con il rub.
-
-        </li>
-
-        <li>
-
-          Lascia riposare 30–60 minuti.
-
-        </li>
+        <li>Rimuovi la membrana.</li>
+        <li>Spalma un velo di senape.</li>
+        <li>Ricopri con il rub.</li>
+        <li>Lascia riposare 30–60 minuti.</li>
 
       </ol>
 
     </div>
 
 
-    <!-- FASE 1 -->
-
     <div class="bbq-section">
 
       <h3>🌳 Fase 1 — Affumicatura</h3>
 
       <div class="bbq-temp">
-
         2,5–3 ore · 115 °C
-
       </div>
 
       <p>
-
-        Posiziona le costine nella zona indiretta
-
-        con il lato dell'osso rivolto verso il basso.
-
+        Cuoci in indiretta con il lato dell'osso
+        rivolto verso il basso.
       </p>
 
       <p>
-
-        Chiudi il Kamado e limita al minimo
-
-        le aperture durante la cottura.
-
-      </p>
-
-      <p>
-
         Dopo circa 3 ore dovrebbe essersi formato
-
         un buon <strong>bark</strong>.
-
       </p>
 
     </div>
 
-
-    <!-- FASE 2 -->
 
     <div class="bbq-section">
 
       <h3>🍎 Fase 2 — Wrap</h3>
 
       <div class="bbq-temp">
-
         1,5–2 ore · 115 °C
-
       </div>
-
-      <p>
-
-        Avvolgi le costine in un doppio strato
-
-        di alluminio.
-
-      </p>
-
-      <p>Per ogni rack aggiungi:</p>
 
       <ul>
 
         <li>25 g burro</li>
-
         <li>1 cucchiaio zucchero di canna</li>
-
         <li>50–70 ml succo di mela</li>
-
         <li>Un piccolo spruzzo di salsa BBQ</li>
 
       </ul>
 
       <p>
-
-        Chiudi molto bene il cartoccio per mantenere
-
-        all'interno i liquidi.
-
+        Chiudi molto bene il cartoccio.
       </p>
 
     </div>
 
-
-    <!-- FASE 3 -->
 
     <div class="bbq-section">
 
       <h3>🍯 Fase 3 — Finitura</h3>
 
       <div class="bbq-temp">
-
         30–45 minuti
       </div>
 
       <p>
-
-        Rimuovi le costine dal wrap.
-
-        Spennella con salsa BBQ e rimettile
-
-        sul Kamado in cottura indiretta.
-
-      </p>
-
-      <p>
-
-        Negli ultimi 10–15 minuti puoi aggiungere
-
-        un'altra spennellata di salsa.
-
+        Rimuovi le costine dal wrap,
+        spennella con salsa BBQ e rimetti
+        sul Kamado.
       </p>
 
       <div class="bbq-highlight">
-
-        Obiettivo: salsa lucida e caramellizzata,
-
-        senza bruciarla.
-
+        Obiettivo: salsa lucida e caramellizzata.
       </div>
 
     </div>
 
-
-    <!-- COTTURA -->
 
     <div class="bbq-section">
 
       <h3>🌡️ Quando sono pronte?</h3>
 
       <p>
-
-        La temperatura interna indicativa è
-
+        Temperatura interna indicativa:
         <strong>93–96 °C</strong>.
-
       </p>
 
       <p>
-
-        Il vero indicatore, però, è la consistenza:
-
-        inserendo una sonda tra le ossa deve entrare
-
+        La sonda deve entrare tra le ossa
         con pochissima resistenza.
-
       </p>
 
     </div>
 
-
-    <!-- RIPOSO -->
 
     <div class="bbq-section">
 
       <h3>🛌 Riposo</h3>
 
       <p>
-
-        Togli le costine dal Kamado e lasciale
-
-        riposare per <strong>10–15 minuti</strong>.
-
-      </p>
-
-      <p>
-
-        Taglia quindi tra le ossa e servi.
-
+        Riposa per <strong>10–15 minuti</strong>,
+        poi taglia tra le ossa e servi.
       </p>
 
     </div>
@@ -1417,26 +1223,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div class="bbq-highlight">
 
-      🔥 Risultato: bark croccante, profumo di ciliegio,
-
-      carne tenera ma ancora strutturata e salsa BBQ
-
-      caramellizzata.
+      🔥 Bark croccante, profumo di ciliegio,
+      carne tenera e salsa BBQ caramellizzata.
 
     </div>
 
-
     <br>
-
 
     <button
       class="bbq-close"
       id="bbqClose"
-      type="button"
     >
-
       🔥 Chiudi ricetta
-
     </button>
 
   </div>
@@ -1444,442 +1242,9 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 
 
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const barbecue = [...document.querySelectorAll(".interest")]
-    .find(el =>
-      el.textContent.trim().includes("Barbecue")
-    );
-
-  const overlay =
-    document.getElementById("bbqOverlay");
-
-  const close =
-    document.getElementById("bbqClose");
-
-  if (!barbecue || !overlay) return;
-
-  barbecue.style.cursor = "pointer";
-
-  barbecue.addEventListener("click", function () {
-
-    overlay.classList.add("open");
-
-    document.body.style.overflow = "hidden";
-
-  });
-
-  close.addEventListener("click", function () {
-
-    overlay.classList.remove("open");
-
-    document.body.style.overflow = "";
-
-  });
-
-  overlay.addEventListener("click", function (event) {
-
-    if (event.target === overlay) {
-
-      overlay.classList.remove("open");
-
-      document.body.style.overflow = "";
-
-    }
-
-  });
-
-  document.addEventListener("keydown", function (event) {
-
-    if (
-      event.key === "Escape" &&
-      overlay.classList.contains("open")
-    ) {
-
-      overlay.classList.remove("open");
-
-      document.body.style.overflow = "";
-
-    }
-
-  });
-
-});
-
-</script>
-  <!-- =========================================================
-     🎮 GAMING DASHBOARD
-     Tutta la dashboard viene generata tramite JavaScript
+<!-- =========================================================
+     GAMING DASHBOARD
 ========================================================= -->
-
-<style>
-
-#gamingOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99996;
-  display: none;
-  background:
-    radial-gradient(circle at top right, rgba(0,120,255,.18), transparent 35%),
-    #080b10;
-  overflow-y: auto;
-  color: white;
-}
-
-#gamingOverlay.open {
-  display: block;
-}
-
-.gaming-dashboard {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-}
-
-/* HEADER */
-
-.gaming-header {
-  background: linear-gradient(135deg,#111923,#0b1119);
-  border: 1px solid #263544;
-  border-radius: 25px;
-  padding: 25px;
-  margin-bottom: 18px;
-  box-shadow: 0 15px 50px rgba(0,0,0,.35);
-}
-
-.gaming-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-}
-
-.gaming-title {
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.gaming-subtitle {
-  color: #8ea0b3;
-  margin-top: 5px;
-}
-
-.gaming-close {
-  width: 45px;
-  height: 45px;
-  border: 0;
-  border-radius: 50%;
-  background: #ffffff;
-  color: #111;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-/* KPI */
-
-.gaming-kpis {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.gaming-kpi {
-  background: #171e27;
-  border: 1px solid #283543;
-  border-radius: 18px;
-  padding: 18px;
-  text-align: center;
-}
-
-.gaming-kpi-number {
-  font-size: 28px;
-  font-weight: bold;
-  color: #55bce9;
-}
-
-.gaming-kpi-label {
-  color: #8796a6;
-  margin-top: 5px;
-  font-size: 14px;
-}
-
-/* CLASSIFICA */
-
-.gaming-section-title {
-  font-size: 22px;
-  font-weight: bold;
-  margin: 22px 0 12px;
-}
-
-.gaming-list {
-  display: grid;
-  gap: 12px;
-}
-
-.game-card {
-  display: grid;
-  grid-template-columns: 90px 1fr auto;
-  gap: 16px;
-  align-items: center;
-  background: #11171f;
-  border: 1px solid #263442;
-  border-radius: 20px;
-  padding: 12px;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.game-card:hover {
-  transform: translateY(-2px);
-  border-color: #168bd0;
-  background: #151e28;
-}
-
-.game-cover-small {
-  width: 90px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 12px;
-  background: #202832;
-}
-
-.game-name {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.game-rank {
-  color: #758697;
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-
-.game-bar {
-  height: 7px;
-  background: #252d36;
-  border-radius: 10px;
-  margin-top: 10px;
-  overflow: hidden;
-}
-
-.game-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg,#168bd0,#55bce9);
-}
-
-.game-score {
-  font-size: 28px;
-  font-weight: bold;
-  color: #55bce9;
-  min-width: 65px;
-  text-align: right;
-}
-
-/* GAME DETAIL */
-
-#gameDetailOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99997;
-  display: none;
-  background: rgba(0,0,0,.88);
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-}
-
-#gameDetailOverlay.open {
-  display: flex;
-}
-
-.game-detail {
-  width: 100%;
-  max-width: 850px;
-  max-height: 92vh;
-  overflow-y: auto;
-  background: #10161e;
-  border: 1px solid #293847;
-  border-radius: 25px;
-  padding: 22px;
-  box-shadow: 0 20px 70px rgba(0,0,0,.6);
-}
-
-.game-detail-header {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 22px;
-  align-items: center;
-}
-
-.game-detail-cover {
-  width: 180px;
-  height: 240px;
-  object-fit: cover;
-  border-radius: 16px;
-}
-
-.game-detail-title {
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.game-detail-score {
-  font-size: 52px;
-  font-weight: bold;
-  color: #55bce9;
-  margin-top: 10px;
-}
-
-.game-detail-score span {
-  font-size: 18px;
-  color: #718391;
-}
-
-/* DATASET */
-
-.dataset {
-  margin-top: 25px;
-  background: #151c24;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid #293744;
-}
-
-.dataset-title {
-  padding: 15px;
-  font-weight: bold;
-  color: #55bce9;
-  border-bottom: 1px solid #293744;
-}
-
-.dataset-row {
-  display: grid;
-  grid-template-columns: 1fr 100px;
-  padding: 12px 15px;
-  border-bottom: 1px solid #242e38;
-}
-
-.dataset-row:last-child {
-  border-bottom: 0;
-}
-
-.dataset-score {
-  text-align: right;
-  font-weight: bold;
-}
-
-/* COMPLETAMENTO */
-
-.completion {
-  margin-top: 20px;
-  background: #151c24;
-  border-radius: 18px;
-  padding: 18px;
-}
-
-.completion-top {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.completion-bar {
-  height: 9px;
-  background: #29313a;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.completion-fill {
-  height: 100%;
-  background: #55bce9;
-}
-
-/* COMMENTO */
-
-.game-comment {
-  margin-top: 20px;
-  background: #18212b;
-  border-left: 4px solid #168bd0;
-  border-radius: 12px;
-  padding: 18px;
-  line-height: 1.6;
-  color: #c8d2dc;
-}
-
-/* BUTTON */
-
-.game-back {
-  width: 100%;
-  margin-top: 20px;
-  padding: 15px;
-  border: 0;
-  border-radius: 15px;
-  background: #168bd0;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* MOBILE */
-
-@media(max-width:700px) {
-
-  .gaming-dashboard {
-    padding: 12px;
-  }
-
-  .gaming-kpis {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .game-card {
-    grid-template-columns: 65px 1fr auto;
-    gap: 10px;
-  }
-
-  .game-cover-small {
-    width: 65px;
-    height: 88px;
-  }
-
-  .game-name {
-    font-size: 15px;
-  }
-
-  .game-score {
-    font-size: 22px;
-    min-width: 48px;
-  }
-
-  .game-detail-header {
-    grid-template-columns: 100px 1fr;
-  }
-
-  .game-detail-cover {
-    width: 100px;
-    height: 135px;
-  }
-
-  .game-detail-title {
-    font-size: 21px;
-  }
-
-  .game-detail-score {
-    font-size: 38px;
-  }
-
-}
-
-</style>
-
-
-<!-- DASHBOARD -->
 
 <div id="gamingOverlay">
 
@@ -1917,8 +1282,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div
             class="gaming-kpi-number"
             id="gameCount"
-          >
-          </div>
+          ></div>
 
           <div class="gaming-kpi-label">
             Giochi valutati
@@ -1930,8 +1294,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div
             class="gaming-kpi-number"
             id="gameAverage"
-          >
-          </div>
+          ></div>
 
           <div class="gaming-kpi-label">
             Media generale
@@ -1943,11 +1306,10 @@ document.addEventListener("DOMContentLoaded", function () {
           <div
             class="gaming-kpi-number"
             id="gameBest"
-          >
-          </div>
+          ></div>
 
           <div class="gaming-kpi-label">
-            Miglior gioco
+            Miglior voto
           </div>
         </div>
 
@@ -1956,8 +1318,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <div
             class="gaming-kpi-number"
             id="gamePlatinum"
-          >
-          </div>
+          ></div>
 
           <div class="gaming-kpi-label">
             Platinati
@@ -1983,7 +1344,9 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 
 
-<!-- DETTAGLIO GIOCO -->
+<!-- =========================================================
+     DETTAGLIO GIOCO
+========================================================= -->
 
 <div id="gameDetailOverlay">
 
@@ -2003,338 +1366,839 @@ document.addEventListener("DOMContentLoaded", function () {
 </div>
 
 
+<!-- LEAFLET -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+/* =========================================================
+   TUTTO IL SISTEMA
+========================================================= */
 
-  /* =====================================================
-     DATASET DEI TUOI GIOCHI
-  ===================================================== */
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
+
+
+  /* =======================================================
+     TECNOLOGIA
+  ======================================================= */
+
+  const tecnologia =
+    [...document.querySelectorAll(".interest")]
+    .find(el =>
+      el.textContent.trim().includes("Tecnologia")
+    );
+
+  const techOverlay =
+    document.getElementById("techOverlay");
+
+  const techPhoto =
+    document.getElementById("techPhoto");
+
+  const techCounter =
+    document.getElementById("techCounter");
+
+  let immagini = [];
+  let techIndex = 0;
+
+  async function caricaTecnologia() {
+
+    try {
+
+      const response = await fetch(
+        "https://api.github.com/repos/matteodelorenzi9136-hub/Matteo-de-Lorenzi/contents/"
+      );
+
+      const files = await response.json();
+
+      immagini = files
+        .filter(file =>
+          file.type === "file" &&
+          /\.(jpg|jpeg|png|webp)$/i.test(file.name)
+        )
+        .map(file => file.download_url);
+
+    } catch(error) {
+
+      console.error(
+        "Errore caricamento Tecnologia:",
+        error
+      );
+
+    }
+
+  }
+
+  function mostraTecnologia() {
+
+    if (!immagini.length) return;
+
+    techOverlay.classList.add("open");
+
+    document.body.style.overflow = "hidden";
+
+    techPhoto.src = immagini[techIndex];
+
+    techCounter.textContent =
+      `${techIndex + 1} / ${immagini.length}`;
+
+  }
+
+  if (tecnologia) {
+
+    tecnologia.style.cursor = "pointer";
+
+    caricaTecnologia();
+
+    tecnologia.addEventListener(
+      "click",
+      mostraTecnologia
+    );
+
+  }
+
+  document
+    .getElementById("techClose")
+    .onclick = function () {
+
+      techOverlay.classList.remove("open");
+
+      document.body.style.overflow = "";
+
+    };
+
+  document
+    .getElementById("techPrev")
+    .onclick = function () {
+
+      if (!immagini.length) return;
+
+      techIndex--;
+
+      if (techIndex < 0)
+        techIndex = immagini.length - 1;
+
+      mostraTecnologia();
+
+    };
+
+  document
+    .getElementById("techNext")
+    .onclick = function () {
+
+      if (!immagini.length) return;
+
+      techIndex++;
+
+      if (techIndex >= immagini.length)
+        techIndex = 0;
+
+      mostraTecnologia();
+
+    };
+
+
+  /* =======================================================
+     VIAGGI
+  ======================================================= */
+
+  const paesiVisitati = [
+
+    "Italy",
+    "Spain",
+    "France",
+    "Latvia",
+    "Malta",
+    "Madagascar",
+    "Austria",
+    "Slovenia",
+    "Turkey",
+    "San Marino",
+    "Switzerland",
+    "Greece",
+    "Ethiopia",
+    "Slovakia"
+
+  ];
+
+
+  const viaggi =
+    [...document.querySelectorAll(".interest")]
+    .find(el =>
+      el.textContent.trim().includes("Viaggi")
+    );
+
+  const travelOverlay =
+    document.getElementById(
+      "travelMapOverlay"
+    );
+
+  let map = null;
+
+
+  if (viaggi) {
+
+    viaggi.style.cursor = "pointer";
+
+    viaggi.addEventListener(
+      "click",
+      async function () {
+
+        travelOverlay.classList.add("open");
+
+        document.body.style.overflow = "hidden";
+
+        if (map) {
+
+          setTimeout(
+            () => map.invalidateSize(),
+            100
+          );
+
+          return;
+
+        }
+
+
+        map = L.map(
+          "travelMap",
+          {
+            worldCopyJump: true,
+            minZoom: 2,
+            maxZoom: 7
+          }
+        ).setView(
+          [25,10],
+          2
+        );
+
+
+        L.tileLayer(
+          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          {
+            attribution:
+              "&copy; OpenStreetMap contributors",
+            maxZoom: 19
+          }
+        ).addTo(map);
+
+
+        try {
+
+          const response =
+            await fetch(
+              "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson"
+            );
+
+          const data =
+            await response.json();
+
+
+          L.geoJSON(
+            data,
+            {
+
+              style:
+                function(feature) {
+
+                  const nome =
+                    feature.properties.ADMIN ||
+                    feature.properties.name ||
+                    "";
+
+                  const visitato =
+                    paesiVisitati.includes(
+                      nome
+                    );
+
+                  return {
+
+                    fillColor:
+                      visitato
+                        ? "#168bd0"
+                        : "#dfe7eb",
+
+                    fillOpacity:
+                      visitato
+                        ? .85
+                        : .65,
+
+                    color: "#ffffff",
+
+                    weight: 1
+
+                  };
+
+                },
+
+
+              onEachFeature:
+                function(feature,layer) {
+
+                  const nome =
+                    feature.properties.ADMIN ||
+                    feature.properties.name ||
+                    "Paese";
+
+                  const visitato =
+                    paesiVisitati.includes(
+                      nome
+                    );
+
+
+                  layer.bindPopup(
+
+                    visitato
+
+                      ? "✈️ <strong>" +
+                        nome +
+                        "</strong><br>Paese visitato"
+
+                      : nome
+
+                  );
+
+                }
+
+            }
+          ).addTo(map);
+
+
+        } catch(error) {
+
+          console.error(
+            "Errore mappa:",
+            error
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  document
+    .getElementById("travelMapClose")
+    .onclick = function() {
+
+      travelOverlay.classList.remove("open");
+
+      document.body.style.overflow = "";
+
+    };
+
+
+  travelOverlay.addEventListener(
+    "click",
+    function(event) {
+
+      if (event.target === travelOverlay) {
+
+        travelOverlay.classList.remove(
+          "open"
+        );
+
+        document.body.style.overflow = "";
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     BBQ
+  ======================================================= */
+
+  const barbecue =
+    [...document.querySelectorAll(".interest")]
+    .find(el =>
+      el.textContent.trim().includes("Barbecue")
+    );
+
+  const bbqOverlay =
+    document.getElementById("bbqOverlay");
+
+
+  if (barbecue) {
+
+    barbecue.style.cursor = "pointer";
+
+    barbecue.addEventListener(
+      "click",
+      function() {
+
+        bbqOverlay.classList.add("open");
+
+        document.body.style.overflow =
+          "hidden";
+
+      }
+    );
+
+  }
+
+
+  document
+    .getElementById("bbqClose")
+    .onclick = function() {
+
+      bbqOverlay.classList.remove("open");
+
+      document.body.style.overflow = "";
+
+    };
+
+
+  bbqOverlay.addEventListener(
+    "click",
+    function(event) {
+
+      if (event.target === bbqOverlay) {
+
+        bbqOverlay.classList.remove(
+          "open"
+        );
+
+        document.body.style.overflow = "";
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     GAMING DATASET
+  ======================================================= */
 
   const giochi = [
 
     {
       nome: "Red Dead Redemption 2",
-      voti: [10,10,10,10,10,10,10],
+
+      voti: [
+        10,10,10,10,10,10,10
+      ],
+
       completamento: 51,
+
       platino: true,
+
       cover:
         "https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/library_600x900_2x.jpg",
+
       commento:
         "Un'esperienza enorme e immersiva. Atmosfera, narrativa, personaggi ed esplorazione sono per me il riferimento assoluto."
+
     },
 
+
     {
-      nome: "The Legend of Zelda: Breath of the Wild",
-      voti: [9,10,10,9,9,10,10],
+      nome:
+        "The Legend of Zelda: Breath of the Wild",
+
+      voti: [
+        9,10,10,9,9,10,10
+      ],
+
       completamento: 100,
+
       platino: false,
+
       cover:
         "https://upload.wikimedia.org/wikipedia/en/0/0e/The_Legend_of_Zelda_Breath_of_the_Wild.jpg",
+
       commento:
         "Libertà, esplorazione e senso di scoperta. Un gioco che riesce a trasformare il mondo stesso nel vero protagonista."
+
     },
 
+
     {
-      nome: "The Last of Us Part II",
-      voti: [9,10,10,10,9,9,9],
+      nome:
+        "The Last of Us Part II",
+
+      voti: [
+        9,10,10,10,9,9,9
+      ],
+
       completamento: 38,
+
       platino: false,
+
       cover:
         "https://cdn.cloudflare.steamstatic.com/steam/apps/2531310/library_600x900_2x.jpg",
+
       commento:
         "Una produzione incredibile dal punto di vista tecnico e narrativo, con una forte componente emotiva."
+
     },
 
+
     {
-      nome: "God of War Ragnarök",
-      voti: [8,9,10,10,9,8,7],
+      nome:
+        "God of War Ragnarök",
+
+      voti: [
+        8,9,10,10,9,8,7
+      ],
+
       completamento: 91,
+
       platino: true,
+
       cover:
         "https://cdn.cloudflare.steamstatic.com/steam/apps/2322010/library_600x900_2x.jpg",
+
       commento:
         "Grande avventura, combattimenti solidi e una produzione tecnica di altissimo livello."
+
     },
 
+
     {
-      nome: "Batman: Arkham Knight",
-      voti: [9,9,9,8,8,8,8],
+      nome:
+        "Batman: Arkham Knight",
+
+      voti: [
+        9,9,9,8,8,8,8
+      ],
+
       completamento: 0,
+
       platino: false,
+
       cover:
         "https://cdn.cloudflare.steamstatic.com/steam/apps/208650/library_600x900_2x.jpg",
+
       commento:
         "Uno dei migliori giochi dedicati a Batman. Gotham, combattimento e atmosfera funzionano ancora alla grande."
+
     },
 
+
     {
-      nome: "Marvel's Spider-Man 2",
-      voti: [7,9,8,8,7,7,7],
+      nome:
+        "Marvel's Spider-Man 2",
+
+      voti: [
+        7,9,8,8,7,7,7
+      ],
+
       completamento: 97,
+
       platino: true,
+
       cover:
         "https://cdn.cloudflare.steamstatic.com/steam/apps/2651280/library_600x900_2x.jpg",
+
       commento:
         "Divertente, spettacolare e molto fluido. Il sistema di movimento resta uno dei suoi punti forti."
+
     },
 
+
     {
-      nome: "WWE 2K26",
-      voti: [7,9,5,8,9,4,9],
+      nome:
+        "WWE 2K26",
+
+      voti: [
+        7,9,5,8,9,4,9
+      ],
+
       completamento: 5,
+
       platino: false,
+
       cover:
         "https://cdn.cloudflare.steamstatic.com/steam/apps/3717070/library_600x900_2x.jpg",
+
       commento:
         "Molto divertente per chi ama il wrestling, con una grande quantità di contenuti e possibilità."
+
     },
 
+
     {
-      nome: "Grand Theft Auto V",
-      voti: [9,8,7,6,9,9,9],
+      nome:
+        "Grand Theft Auto V",
+
+      voti: [
+        9,8,7,6,9,9,9
+      ],
+
       completamento: 0,
+
       platino: false,
+
       cover:
         "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/library_600x900_2x.jpg",
+
       commento:
         "Un titolo che ha segnato una generazione. Open world, libertà e quantità di contenuti rimangono impressionanti."
-    }
+
+    },
+
+
     {
-  nome: "METAL GEAR SOLID Δ: SNAKE EATER",
+      nome:
+        "METAL GEAR SOLID Δ: SNAKE EATER",
 
-  voti: [
-    10, // Storia
-    9,  // Gameplay
-    9,  // Grafica
-    10, // Atmosfera
-    9,  // Esplorazione
-    9,  // Longevità
-    10  // Divertimento
-  ],
+      voti: [
+        10,9,9,10,9,9,10
+      ],
 
-  completamento: 38,
+      completamento: 38,
 
-  platino: false,
+      platino: false,
 
-  cover:
-    "https://cdn.cloudflare.steamstatic.com/steam/apps/2417610/library_600x900_2x.jpg",
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/2417610/library_600x900_2x.jpg",
 
-  commento:
-    "Un remake che mantiene intatta l'anima di Snake Eater. Atmosfera, storia e tensione stealth sono i suoi punti di forza."
-},
+      commento:
+        "Un remake che mantiene intatta l'anima di Snake Eater. Atmosfera, storia e tensione stealth sono i suoi punti di forza."
+
+    },
 
 
-{
-  nome: "The Witcher 3: Wild Hunt",
+    {
+      nome:
+        "The Witcher 3: Wild Hunt",
 
-  voti: [
-    10, // Storia
-    9,  // Gameplay
-    8,  // Grafica
-    10, // Atmosfera
-    10, // Esplorazione
-    10, // Longevità
-    10  // Divertimento
-  ],
+      voti: [
+        10,9,8,10,10,10,10
+      ],
 
-  completamento: null,
+      completamento: null,
 
-  platino: false,
+      platino: false,
 
-  cover:
-    "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900_2x.jpg",
+      cover:
+        "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/library_600x900_2x.jpg",
 
-  commento:
-    "Un'avventura enorme e coinvolgente. Storia, atmosfera ed esplorazione sono tra i suoi punti di forza."
-},
+      commento:
+        "Un'avventura enorme e coinvolgente. Storia, atmosfera ed esplorazione sono tra i suoi punti di forza."
+
+    }
 
   ];
 
 
-  /* =====================================================
+  /* =======================================================
      CALCOLO MEDIA
-  ===================================================== */
+  ======================================================= */
 
-  giochi.forEach(function (gioco) {
+  giochi.forEach(
+    function(gioco) {
 
-    gioco.media =
-      gioco.voti.reduce(
-        (somma, voto) => somma + voto,
-        0
-      ) / gioco.voti.length;
+      gioco.media =
+        gioco.voti.reduce(
+          function(somma,voto) {
 
-  });
+            return somma + voto;
 
+          },
+          0
+        ) / gioco.voti.length;
 
-  /* ORDINA DAL VOTO PIÙ ALTO */
-
-  giochi.sort(function (a,b) {
-
-    return b.media - a.media;
-
-  });
+    }
+  );
 
 
-  /* =====================================================
+  /* ORDINA */
+
+  giochi.sort(
+    function(a,b) {
+
+      return b.media - a.media;
+
+    }
+  );
+
+
+  /* =======================================================
      KPI
-  ===================================================== */
+  ======================================================= */
 
   const mediaGenerale =
     giochi.reduce(
-      (somma,g) => somma + g.media,
+      function(somma,gioco) {
+
+        return somma + gioco.media;
+
+      },
       0
     ) / giochi.length;
 
-  document.getElementById("gameCount")
-    .textContent = giochi.length;
 
-  document.getElementById("gameAverage")
-    .textContent = mediaGenerale.toFixed(2);
-
-  document.getElementById("gameBest")
-    .textContent = giochi[0].media.toFixed(2);
-
-  document.getElementById("gamePlatinum")
-    .textContent =
-      giochi.filter(g => g.platino).length;
+  document.getElementById(
+    "gameCount"
+  ).textContent =
+    giochi.length;
 
 
-  /* =====================================================
-     NOMI DEI CRITERI
-  ===================================================== */
+  document.getElementById(
+    "gameAverage"
+  ).textContent =
+    mediaGenerale.toFixed(2);
+
+
+  document.getElementById(
+    "gameBest"
+  ).textContent =
+    giochi[0].media.toFixed(2);
+
+
+  document.getElementById(
+    "gamePlatinum"
+  ).textContent =
+    giochi.filter(
+      gioco => gioco.platino
+    ).length;
+
+
+  /* =======================================================
+     CRITERI
+  ======================================================= */
 
   const criteri = [
 
     "Storia",
-
     "Gameplay",
-
     "Grafica",
-
     "Atmosfera",
-
     "Esplorazione",
-
     "Longevità",
-
     "Divertimento"
 
   ];
 
 
-  /* =====================================================
-     GENERAZIONE CLASSIFICA
-  ===================================================== */
+  /* =======================================================
+     GENERA CLASSIFICA
+  ======================================================= */
 
   const lista =
-    document.getElementById("gamingList");
-
-
-  giochi.forEach(function (gioco,index) {
-
-    const card =
-      document.createElement("div");
-
-    card.className = "game-card";
-
-
-    const cover =
-      document.createElement("img");
-
-    cover.className = "game-cover-small";
-
-    cover.src = gioco.cover;
-
-    cover.alt = gioco.nome;
-
-    cover.onerror = function () {
-
-      this.style.display = "none";
-
-    };
-
-
-    const info =
-      document.createElement("div");
-
-
-    const rank =
-      document.createElement("div");
-
-    rank.className = "game-rank";
-
-    rank.textContent =
-      "#" + (index + 1);
-
-
-    const nome =
-      document.createElement("div");
-
-    nome.className = "game-name";
-
-    nome.textContent = gioco.nome;
-
-
-    const bar =
-      document.createElement("div");
-
-    bar.className = "game-bar";
-
-
-    const fill =
-      document.createElement("div");
-
-    fill.className = "game-bar-fill";
-
-    fill.style.width =
-      (gioco.media * 10) + "%";
-
-
-    bar.appendChild(fill);
-
-
-    info.appendChild(rank);
-
-    info.appendChild(nome);
-
-    info.appendChild(bar);
-
-
-    const score =
-      document.createElement("div");
-
-    score.className = "game-score";
-
-    score.textContent =
-      gioco.media.toFixed(2);
-
-
-    card.appendChild(cover);
-
-    card.appendChild(info);
-
-    card.appendChild(score);
-
-
-    card.addEventListener(
-      "click",
-      function () {
-
-        apriGioco(gioco);
-
-      }
+    document.getElementById(
+      "gamingList"
     );
 
 
-    lista.appendChild(card);
+  giochi.forEach(
+    function(gioco,index) {
 
-  });
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "game-card";
 
 
-  /* =====================================================
-     DETTAGLIO
-  ===================================================== */
+      const cover =
+        document.createElement("img");
+
+      cover.className =
+        "game-cover-small";
+
+      cover.src =
+        gioco.cover;
+
+      cover.alt =
+        gioco.nome;
+
+
+      const info =
+        document.createElement("div");
+
+
+      const rank =
+        document.createElement("div");
+
+      rank.className =
+        "game-rank";
+
+      rank.textContent =
+        "#" + (index + 1);
+
+
+      const nome =
+        document.createElement("div");
+
+      nome.className =
+        "game-name";
+
+      nome.textContent =
+        gioco.nome;
+
+
+      const bar =
+        document.createElement("div");
+
+      bar.className =
+        "game-bar";
+
+
+      const fill =
+        document.createElement("div");
+
+      fill.className =
+        "game-bar-fill";
+
+      fill.style.width =
+        (gioco.media * 10) + "%";
+
+
+      bar.appendChild(fill);
+
+      info.appendChild(rank);
+
+      info.appendChild(nome);
+
+      info.appendChild(bar);
+
+
+      const score =
+        document.createElement("div");
+
+      score.className =
+        "game-score";
+
+      score.textContent =
+        gioco.media.toFixed(2);
+
+
+      card.appendChild(cover);
+
+      card.appendChild(info);
+
+      card.appendChild(score);
+
+
+      card.addEventListener(
+        "click",
+        function() {
+
+          apriGioco(gioco);
+
+        }
+      );
+
+
+      lista.appendChild(card);
+
+    }
+  );
+
+
+  /* =======================================================
+     DETTAGLIO GIOCO
+  ======================================================= */
 
   function apriGioco(gioco) {
 
@@ -2348,7 +2212,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     gioco.voti.forEach(
-      function (voto,index) {
+      function(voto,index) {
 
         dataset += `
 
@@ -2370,6 +2234,18 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
+    const completamentoTesto =
+      gioco.completamento !== null
+        ? gioco.completamento + "%"
+        : "Dato non disponibile";
+
+
+    const completamentoBarra =
+      gioco.completamento !== null
+        ? jogoFix(gioco.completamento)
+        : 0;
+
+
     content.innerHTML = `
 
       <div class="game-detail-header">
@@ -2387,11 +2263,8 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
 
           <div class="game-detail-score">
-
             ${gioco.media.toFixed(2)}
-
             <span>/ 10</span>
-
           </div>
 
           <div style="
@@ -2399,9 +2272,11 @@ document.addEventListener("DOMContentLoaded", function () {
             margin-top:8px;
           ">
 
-            ${gioco.platino
-              ? "🏆 Platino ottenuto"
-              : "🎮 In progress"}
+            ${
+              gioco.platino
+                ? "🏆 Platino ottenuto"
+                : "🎮 In progress"
+            }
 
           </div>
 
@@ -2430,7 +2305,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </strong>
 
           <strong>
-            ${gioco.completamento}%
+            ${completamentoTesto}
           </strong>
 
         </div>
@@ -2439,9 +2314,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           <div
             class="completion-fill"
-            style="
-              width:${gioco.completamento}%
-            "
+            style="width:${completamentoBarra}%"
           ></div>
 
         </div>
@@ -2463,25 +2336,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     document
-      .getElementById("gameDetailOverlay")
+      .getElementById(
+        "gameDetailOverlay"
+      )
       .classList.add("open");
 
   }
 
 
-  /* =====================================================
-     APERTURA VIDEOGIOCHI
-  ===================================================== */
+  function jogoFix(valore) {
+
+    return Math.max(
+      0,
+      Math.min(
+        100,
+        Number(valore)
+      )
+    );
+
+  }
+
+
+  /* =======================================================
+     APERTURA GAMING
+  ======================================================= */
 
   const videogiochi =
     [...document.querySelectorAll(".interest")]
-      .find(function(el) {
-
-        return el.textContent
-          .trim()
-          .includes("Videogiochi");
-
-      });
+    .find(el =>
+      el.textContent.trim()
+        .includes("Videogiochi")
+    );
 
 
   const gamingOverlay =
@@ -2497,10 +2382,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     videogiochi.addEventListener(
       "click",
-      function () {
+      function() {
 
-        gamingOverlay
-          .classList.add("open");
+        gamingOverlay.classList.add(
+          "open"
+        );
 
         document.body.style.overflow =
           "hidden";
@@ -2511,43 +2397,35 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  /* =====================================================
-     CHIUSURA DASHBOARD
-  ===================================================== */
+  /* CHIUDI GAMING */
 
   document
     .getElementById("gamingClose")
-    .addEventListener(
-      "click",
-      function () {
+    .onclick = function() {
 
-        gamingOverlay
-          .classList.remove("open");
+      gamingOverlay.classList.remove(
+        "open"
+      );
 
-        document.body.style.overflow = "";
+      document.body.style.overflow =
+        "";
 
-      }
-    );
+    };
 
 
-  /* =====================================================
-     DETTAGLIO - CHIUDI
-  ===================================================== */
+  /* CHIUDI DETTAGLIO */
 
   document
     .getElementById("gameDetailClose")
-    .addEventListener(
-      "click",
-      function () {
+    .onclick = function() {
 
-        document
-          .getElementById(
-            "gameDetailOverlay"
-          )
-          .classList.remove("open");
+      document
+        .getElementById(
+          "gameDetailOverlay"
+        )
+        .classList.remove("open");
 
-      }
-    );
+    };
 
 
   /* CLICK FUORI */
@@ -2562,8 +2440,9 @@ document.addEventListener("DOMContentLoaded", function () {
           event.target === this
         ) {
 
-          this.classList
-            .remove("open");
+          this.classList.remove(
+            "open"
+          );
 
         }
 
@@ -2571,32 +2450,48 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-  /* ESC */
+  /* =======================================================
+     ESCAPE GENERALE
+  ======================================================= */
 
   document.addEventListener(
     "keydown",
     function(event) {
 
-      if (
-        event.key === "Escape"
-      ) {
+      if (event.key !== "Escape")
+        return;
 
-        document
-          .getElementById(
-            "gameDetailOverlay"
-          )
-          .classList.remove("open");
 
-        gamingOverlay
-          .classList.remove("open");
+      techOverlay.classList.remove(
+        "open"
+      );
 
-        document.body.style.overflow =
-          "";
+      travelOverlay.classList.remove(
+        "open"
+      );
 
-      }
+      bbqOverlay.classList.remove(
+        "open"
+      );
+
+      gamingOverlay.classList.remove(
+        "open"
+      );
+
+      document
+        .getElementById(
+          "gameDetailOverlay"
+        )
+        .classList.remove(
+          "open"
+        );
+
+      document.body.style.overflow =
+        "";
 
     }
   );
+
 
 });
 
